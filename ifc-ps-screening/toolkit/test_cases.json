@@ -1,0 +1,784 @@
+[
+ {
+  "name": "Solar park, Jaisalmer (worked example 1)",
+  "sector": "solar",
+  "stage": "greenfield",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "yes",
+   "p2_camps": "yes",
+   "p2_supply": "yes",
+   "p2_retrench": "no",
+   "p3_pollution": "yes",
+   "p3_water": "yes",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "yes",
+   "p4_traffic": "yes",
+   "p4_infra": "yes",
+   "p4_dam": "no",
+   "p4_security": "yes",
+   "p4_influx": "yes",
+   "p5_land": "yes",
+   "p5_users": "yes",
+   "p5_relocate": "no",
+   "p5_scale": "unsure",
+   "p5_expro": "unsure",
+   "p5_access": "yes",
+   "p5_legacy": "yes",
+   "p6_protected": "unsure",
+   "p6_natural": "yes",
+   "p6_species": "unsure",
+   "p6_living": "no",
+   "p6_services": "unsure",
+   "p7_present": "unsure",
+   "p7_fpic": "unsure",
+   "p8_known": "unsure",
+   "p8_critical": "no",
+   "p8_dig": "unsure",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "B",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "trig",
+    "4": "trig",
+    "5": "trig",
+    "6": "trig",
+    "7": "review",
+    "8": "review"
+   },
+   "signals": [],
+   "watch": [
+    "q:p5_scale",
+    "q:p6_species",
+    "q:p7_fpic"
+   ],
+   "warnings": [],
+   "ec_gate": true
+  }
+ },
+ {
+  "name": "IT office, Pune, honest answers: e-waste and guards (worked example 2)",
+  "sector": "services",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "yes",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "yes",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "no",
+   "p4_security": "yes",
+   "p4_influx": "no",
+   "p5_land": "no",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "no",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "C",
+   "why": "Minimal or no adverse risks or impacts on current answers (Sustainability Policy para 40).",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "trig",
+    "4": "trig",
+    "5": "clear",
+    "6": "clear",
+    "7": "clear",
+    "8": "clear"
+   },
+   "signals": [],
+   "watch": [],
+   "warnings": [],
+   "ec_gate": false
+  }
+ },
+ {
+  "name": "IT office, Pune, no pollution and no guards",
+  "sector": "services",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "yes",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "no",
+   "p4_security": "no",
+   "p4_influx": "no",
+   "p5_land": "no",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "no",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "C",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "clear",
+    "4": "clear",
+    "5": "clear",
+    "6": "clear",
+    "7": "clear",
+    "8": "clear"
+   },
+   "signals": [],
+   "watch": [],
+   "warnings": [],
+   "ec_gate": false
+  }
+ },
+ {
+  "name": "Hydropower, Kinnaur (worked example 3)",
+  "sector": "hydro",
+  "stage": "greenfield",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "yes",
+   "p2_camps": "yes",
+   "p3_pollution": "yes",
+   "p4_near": "yes",
+   "p4_infra": "yes",
+   "p4_dam": "yes",
+   "p5_land": "yes",
+   "p5_users": "yes",
+   "p5_relocate": "unsure",
+   "p6_natural": "yes",
+   "p6_species": "unsure",
+   "p7_present": "yes",
+   "p7_fpic": "yes",
+   "p8_known": "yes",
+   "p8_dig": "yes"
+  },
+  "expect": {
+   "category": "A",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "trig",
+    "4": "trig",
+    "5": "trig",
+    "6": "trig",
+    "7": "trig",
+    "8": "trig"
+   },
+   "signals": [
+    "q:p4_dam",
+    "q:p7_fpic",
+    "sig:high_risk_greenfield"
+   ],
+   "warnings": [],
+   "ec_gate": false,
+   "ps1_first_action_starts": "Commission a full ESIA"
+  }
+ },
+ {
+  "name": "Financial intermediary",
+  "sector": "fi",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p5_relocate": "yes"
+  },
+  "expect": {
+   "category": "FI",
+   "signals": [],
+   "watch": [],
+   "ec_gate": false,
+   "fi_prompt": true,
+   "policy_note_cite": null,
+   "ps1_first_action_starts": "Develop and operate an FI-level ESMS"
+  }
+ },
+ {
+  "name": "Blank form",
+  "sector": "",
+  "stage": "",
+  "country": "IN",
+  "answers": {},
+  "expect": {
+   "category": "-",
+   "status": {
+    "1": "trig",
+    "2": "open",
+    "3": "open",
+    "4": "open",
+    "5": "open",
+    "6": "open",
+    "7": "open",
+    "8": "open"
+   },
+   "signals": [],
+   "watch": [],
+   "warnings": [],
+   "ec_gate": false
+  }
+ },
+ {
+  "name": "Cement expansion with relocation",
+  "sector": "heavy",
+  "stage": "expansion",
+  "country": "IN",
+  "answers": {
+   "p3_pollution": "yes",
+   "p3_ghg": "yes",
+   "p5_land": "yes",
+   "p5_relocate": "yes"
+  },
+  "expect": {
+   "category": "A",
+   "status": {
+    "1": "trig",
+    "2": "open",
+    "3": "trig",
+    "4": "open",
+    "5": "trig",
+    "6": "open",
+    "7": "open",
+    "8": "open"
+   },
+   "signals": [
+    "q:p5_relocate"
+   ],
+   "ec_gate": false
+  }
+ },
+ {
+  "name": "Sector chosen, nothing answered",
+  "sector": "services",
+  "stage": "",
+  "country": "IN",
+  "answers": {},
+  "expect": {
+   "category": "-",
+   "status": {
+    "1": "trig",
+    "2": "open",
+    "3": "open",
+    "4": "open",
+    "5": "open",
+    "6": "open",
+    "7": "open",
+    "8": "open"
+   },
+   "ec_gate": false
+  }
+ },
+ {
+  "name": "Solar, every answer No (suspicious: sanity warnings expected)",
+  "sector": "solar",
+  "stage": "greenfield",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "no",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "no",
+   "p4_security": "no",
+   "p4_influx": "no",
+   "p5_land": "no",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "no",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "B",
+   "status": {
+    "1": "trig",
+    "2": "clear",
+    "3": "clear",
+    "4": "clear",
+    "5": "clear",
+    "6": "clear",
+    "7": "clear",
+    "8": "clear"
+   },
+   "signals": [],
+   "watch": [],
+   "warnings": [
+    "power_land",
+    "workforce_all"
+   ],
+   "ec_gate": true,
+   "ps8_note_if_clear": true
+  }
+ },
+ {
+  "name": "Thermal greenfield, every answer No",
+  "sector": "thermal",
+  "stage": "greenfield",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "no",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "no",
+   "p4_security": "no",
+   "p4_influx": "no",
+   "p5_land": "no",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "no",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "A",
+   "status": {
+    "1": "trig",
+    "2": "clear",
+    "3": "clear",
+    "4": "clear",
+    "5": "clear",
+    "6": "clear",
+    "7": "clear",
+    "8": "clear"
+   },
+   "signals": [
+    "sig:high_risk_greenfield"
+   ],
+   "warnings": [
+    "thermal_pollution",
+    "thermal_ghg",
+    "thermal_ash",
+    "workforce_all"
+   ],
+   "ec_gate": false
+  }
+ },
+ {
+  "name": "Habitat altered near a protected area",
+  "sector": "agri",
+  "stage": "expansion",
+  "country": "IN",
+  "answers": {
+   "p6_natural": "yes",
+   "p6_protected": "yes"
+  },
+  "expect": {
+   "category": "A",
+   "signals": [
+    "sig:habitat_near_protected"
+   ],
+   "status": {
+    "1": "trig",
+    "2": "open",
+    "3": "open",
+    "4": "open",
+    "5": "open",
+    "6": "trig",
+    "7": "open",
+    "8": "open"
+   }
+  }
+ },
+ {
+  "name": "Commercial use of Indigenous Peoples' heritage",
+  "sector": "light",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p7_present": "yes",
+   "p8_use": "yes"
+  },
+  "expect": {
+   "category": "A",
+   "signals": [
+    "sig:ip_heritage_commercial"
+   ],
+   "status": {
+    "1": "trig",
+    "2": "open",
+    "3": "open",
+    "4": "open",
+    "5": "open",
+    "6": "open",
+    "7": "trig",
+    "8": "trig"
+   }
+  }
+ },
+ {
+  "name": "Healthcare: medical waste blocks Category C",
+  "sector": "social",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "yes",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no"
+  },
+  "expect": {
+   "category": "B",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "trig",
+    "4": "review",
+    "5": "open",
+    "6": "open",
+    "7": "open",
+    "8": "open"
+   },
+   "signals": []
+  }
+ },
+ {
+  "name": "Services, ten informative answers: Category C with open-question note",
+  "sector": "services",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no"
+  },
+  "expect": {
+   "category": "C",
+   "why": "Minimal or no adverse risks or impacts on current answers (Sustainability Policy para 40). Questions that could move this to B are still open or marked Not sure.",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "clear",
+    "4": "review",
+    "5": "open",
+    "6": "open",
+    "7": "open",
+    "8": "open"
+   },
+   "watch": [
+    "q:p4_dam",
+    "q:p5_relocate",
+    "q:p5_scale",
+    "q:p6_species",
+    "q:p7_fpic",
+    "q:p8_critical"
+   ]
+  }
+ },
+ {
+  "name": "Services, only nine informative answers",
+  "sector": "services",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no"
+  },
+  "expect": {
+   "category": "-"
+  }
+ },
+ {
+  "name": "Services, a land requirement blocks Category C",
+  "sector": "services",
+  "stage": "greenfield",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p5_land": "yes"
+  },
+  "expect": {
+   "category": "B",
+   "status": {
+    "1": "trig",
+    "2": "trig",
+    "3": "clear",
+    "4": "review",
+    "5": "trig",
+    "6": "open",
+    "7": "open",
+    "8": "open"
+   }
+  }
+ },
+ {
+  "name": "Unsure answers do not count towards the minimum",
+  "sector": "services",
+  "stage": "existing",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "unsure",
+   "p3_pest": "unsure",
+   "p4_near": "no"
+  },
+  "expect": {
+   "category": "-"
+  }
+ },
+ {
+  "name": "Another country: no national-law lines, no EC gate",
+  "sector": "solar",
+  "stage": "greenfield",
+  "country": "OTHER",
+  "answers": {
+   "p2_workers": "no",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "no",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "no",
+   "p4_security": "no",
+   "p4_influx": "no",
+   "p5_land": "yes",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "yes",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "B",
+   "ec_gate": false,
+   "no_national_law": true
+  }
+ },
+ {
+  "name": "Gold mine, greenfield, tailings dam: extractive-industry note",
+  "sector": "mining",
+  "stage": "greenfield",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "yes",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "yes",
+   "p4_security": "no",
+   "p4_influx": "no",
+   "p5_land": "yes",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "no",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "A",
+   "signals": [
+    "q:p4_dam",
+    "sig:high_risk_greenfield"
+   ],
+   "fi_prompt": false,
+   "policy_note_cite": "Sustainability Policy paras 49–52"
+  }
+ },
+ {
+  "name": "Water utility, expansion: retail distribution note",
+  "sector": "water",
+  "stage": "expansion",
+  "country": "IN",
+  "answers": {
+   "p2_workers": "yes",
+   "p2_contract": "no",
+   "p2_camps": "no",
+   "p2_supply": "no",
+   "p2_retrench": "no",
+   "p3_pollution": "yes",
+   "p3_water": "no",
+   "p3_ghg": "no",
+   "p3_pest": "no",
+   "p4_near": "no",
+   "p4_traffic": "no",
+   "p4_infra": "no",
+   "p4_dam": "no",
+   "p4_security": "no",
+   "p4_influx": "no",
+   "p5_land": "no",
+   "p5_users": "no",
+   "p5_relocate": "no",
+   "p5_scale": "no",
+   "p5_expro": "no",
+   "p5_access": "no",
+   "p5_legacy": "no",
+   "p6_protected": "no",
+   "p6_natural": "no",
+   "p6_species": "no",
+   "p6_living": "no",
+   "p6_services": "no",
+   "p7_present": "no",
+   "p7_fpic": "no",
+   "p8_known": "no",
+   "p8_critical": "no",
+   "p8_dig": "no",
+   "p8_use": "no"
+  },
+  "expect": {
+   "category": "B",
+   "fi_prompt": false,
+   "policy_note_cite": "Sustainability Policy para 53"
+  }
+ }
+]

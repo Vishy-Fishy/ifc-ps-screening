@@ -1,0 +1,1606 @@
+{
+ "rule_set": "EMC IFC PS screening rules",
+ "version": "1.2.0",
+ "released": "2026-10-29",
+ "standard_basis": {
+  "performance_standards": "IFC Performance Standards on Environmental and Social Sustainability, 1 January 2012 (in force)",
+  "guidance_notes": "2012 edition, updated 14 June 2021",
+  "revision_note": "IFC is reviewing its Sustainability Framework. Phase I dialogue runs to December 2026 and public consultation on draft proposals starts in January 2027. Nothing has been approved and no effective date is set. The 2012 Performance Standards remain in force; draft provisions are not applied.",
+  "sustainability_policy": "IFC Policy on Environmental and Social Sustainability, 1 January 2012 (paragraphs 19–44 used for the Exclusion List, due diligence, FIs and categories)",
+  "fi_guidance": "IFC Guidance Note on Financial Intermediaries, 29 September 2023 (replaces the Interpretation Note on FIs of November 2018)",
+  "category_basis": "The meaning of Categories A, B, C and FI-1 to FI-3 follows Sustainability Policy para 40 (and para 44 for FIs). The sector risk classes, the question-to-category rules, the sanity checks and the minimum-answers rule are EMC judgement: the Policy gives no sector list and no scoring rule.",
+  "cite_format": "PSn para x = Performance Standard n, paragraph x. GNn-m = Guidance Note n, note m. Sustainability Policy para x. FI Guidance Note para x. fn = footnote. Question basis: PS = follows Performance Standard text; EMC = EMC practice or judgement."
+ },
+ "owner": "Environmental Management Centre (EMC), Mumbai",
+ "answer_values": [
+  "yes",
+  "no",
+  "unsure"
+ ],
+ "status_values": {
+  "trig": "Triggered",
+  "review": "Needs review",
+  "clear": "Not triggered",
+  "open": "Not screened"
+ },
+ "status_rule": {
+  "description": "Per standard: any Yes triggers; every question answered No clears; no answers at all is Not screened; anything else (Not sure, or a mix of No and unanswered) is Needs review. PS1 is always triggered.",
+  "always_triggered": [
+   1
+  ]
+ },
+ "standards": [
+  {
+   "ps": 1,
+   "name": "Assessment and management of environmental and social risks and impacts",
+   "short": "E&S management",
+   "sections": [
+    "Environmental and Social Assessment and Management System",
+    "Policy",
+    "Identification of Risks and Impacts",
+    "Management Programs",
+    "Organizational Capacity and Competency",
+    "Emergency Preparedness and Response",
+    "Monitoring and Review",
+    "Stakeholder Engagement",
+    "Informed Consultation and Participation",
+    "External Communications and Grievance Mechanisms",
+    "Ongoing Reporting to Affected Communities"
+   ],
+   "base_actions": [
+    {
+     "text": "Adopt an environmental and social policy endorsed by senior management.",
+     "cite": "PS1 para 6"
+    },
+    {
+     "text": "Identify risks and impacts through an assessment scaled to the project’s category.",
+     "cite": "PS1 paras 7–8, 19"
+    },
+    {
+     "text": "Set up an ESMS: management programmes, organisational capacity and training, emergency preparedness, monitoring and review.",
+     "cite": "PS1 paras 13–24"
+    },
+    {
+     "text": "Run stakeholder engagement and an external grievance mechanism, with disclosure of relevant information.",
+     "cite": "PS1 paras 25–36"
+    },
+    {
+     "text": "Where gaps against the Performance Standards are found, agree an Environmental and Social Action Plan (ESAP) with the investor; IFC makes it a condition of investment and expects the requirements to be met within a reasonable period. Category C projects often have no ESAP.",
+     "cite": "PS1 para 16; Sustainability Policy paras 22, 28 and fn 10"
+    }
+   ],
+   "documents": [
+    "E&S policy",
+    "ESIA or focused E&S assessment",
+    "ESMP",
+    "ESMS manual",
+    "Stakeholder Engagement Plan",
+    "Grievance mechanism procedure",
+    "Emergency response plan",
+    "Monitoring and reporting procedure"
+   ],
+   "note_if_clear": null,
+   "category_actions": {
+    "A": [
+     {
+      "text": "Commission a full ESIA prepared by competent professionals, with external experts for significant or technically complex issues, and run informed consultation and participation with affected communities. Where the impacts on communities are significant (or there are adverse impacts on Indigenous Peoples), IFC as investor judges whether this leads to Broad Community Support.",
+      "cite": "PS1 paras 19, 30–31; Sustainability Policy para 30"
+     }
+    ],
+    "B": [
+     {
+      "text": "Commission a focused E&S assessment and an Environmental and Social Management Plan (ESMP).",
+      "cite": "PS1 paras 7, 14–16"
+     }
+    ],
+    "FI": [
+     {
+      "text": "Develop and operate an FI-level ESMS that fits the risk of the portfolio, incorporating the relevant principles of PS1: E&S policy, organisational capacity, risk identification and due diligence of each transaction, management programmes, monitoring and review, an external communications mechanism and emergency preparedness. FI-3 clients need only a simple screening procedure.",
+      "cite": "Sustainability Policy para 35; FI Guidance Note paras 6, 17, 23 and fn 20"
+     },
+     {
+      "text": "Screen every sub-project against the IFC Exclusion List and national law. FIs that serve only individual retail clients (mortgages, student loans) are generally not required to.",
+      "cite": "Sustainability Policy para 35; FI Guidance Note paras 7, 34 and fn 8, 10, 31"
+     },
+     {
+      "text": "Apply the relevant parts of PS2 to the FI’s own employees, and manage life and fire safety in premises open to the public. PS2 paras 7, 11, 12, 27, 28 and 29 are unlikely to apply to an FI.",
+      "cite": "Sustainability Policy para 35; FI Guidance Note para 18"
+     },
+     {
+      "text": "For FI-1, and for FI-2 that supports Higher Risk Transactions, apply the relevant Performance Standards to those sub-projects. They are equity, project finance or corporate finance over 36 months for activities involving resettlement, impacts on Indigenous Peoples, significant environmental, community, biodiversity or heritage impacts, significant retrenchment, or significant occupational health and safety risk.",
+      "cite": "Sustainability Policy para 35; FI Guidance Note paras 9, 34–35"
+     },
+     {
+      "text": "Confirm the scope of application: a specified end use of IFC funds covers that asset class only (and the same asset class when the FI also finances it from its own account); equity or general-purpose funding covers the whole portfolio originated from the date of IFC’s investment. The existing portfolio is not covered.",
+      "cite": "Sustainability Policy paras 36–37; FI Guidance Note paras 3–4 and fn 5"
+     },
+     {
+      "text": "Where IFC is the investor: report E&S performance to IFC each year (not FI-3), publish a summary of the ESMS, and (FI-1 and FI-2) notify IFC promptly of serious incidents at borrowers or investees. Private equity funds also disclose the sub-projects supported with IFC funding other than Category C.",
+      "cite": "FI Guidance Note paras 52–54, 62–66"
+     },
+     {
+      "text": "Expect restrictions beyond the Exclusion List, for example coal-related sub-projects where the use of proceeds is defined (and trade finance for thermal coal); for funds, coal investments are excluded up front or IFC opts out.",
+      "cite": "FI Guidance Note para 7 and fn 11"
+     }
+    ]
+   }
+  },
+  {
+   "ps": 2,
+   "name": "Labour and working conditions",
+   "short": "Labour",
+   "sections": [
+    "Human Resources Policies and Procedures",
+    "Working Conditions and Terms of Employment",
+    "Workers' Organizations",
+    "Non-Discrimination and Equal Opportunity",
+    "Retrenchment",
+    "Grievance Mechanism",
+    "Child Labor",
+    "Forced Labor",
+    "Occupational Health and Safety",
+    "Workers Engaged by Third Parties",
+    "Supply Chain"
+   ],
+   "base_actions": [
+    {
+     "text": "Adopt an HR policy and written terms of employment that meet national law and PS2.",
+     "cite": "PS2 paras 8–9"
+    },
+    {
+     "text": "Ensure no child labour, forced labour or discrimination, and respect workers’ freedom of association where national law allows it.",
+     "cite": "PS2 paras 13–15, 21–22"
+    },
+    {
+     "text": "Set up a worker grievance mechanism, extended to contractor workers where the contractor has none.",
+     "cite": "PS2 paras 20, 26"
+    },
+    {
+     "text": "Run an occupational health and safety programme: hazard identification, training, PPE and incident reporting.",
+     "cite": "PS2 para 23"
+    }
+   ],
+   "documents": [
+    "HR policy and manual",
+    "OHS management plan",
+    "Worker grievance procedure",
+    "Contractor management procedure with PS2 clauses",
+    "Worker accommodation standards (if camps)",
+    "Retrenchment plan (if layoffs)",
+    "Supply chain labour risk review (if high risk)"
+   ],
+   "note_if_clear": null
+  },
+  {
+   "ps": 3,
+   "name": "Resource efficiency and pollution prevention",
+   "short": "Pollution",
+   "sections": [
+    "Resource Efficiency",
+    "Greenhouse Gases",
+    "Water Consumption",
+    "Pollution Prevention",
+    "Wastes",
+    "Hazardous Materials Management",
+    "Pesticide Use and Management"
+   ],
+   "base_actions": [
+    {
+     "text": "Follow the World Bank Group EHS Guidelines (General and sector-specific), applying whichever is more stringent of the Guidelines and national standards.",
+     "cite": "PS3 para 5; PS overview paras 6–7"
+    },
+    {
+     "text": "Adopt resource efficiency measures for energy, water and materials that are technically and financially feasible and cost-effective.",
+     "cite": "PS3 paras 4, 6"
+    }
+   ],
+   "documents": [
+    "Pollution prevention and waste management plan",
+    "Hazardous materials management plan",
+    "GHG quantification (if above 25,000 tCO2e/yr)",
+    "Water management plan",
+    "Integrated pest management plan (if pesticides)",
+    "Environmental monitoring programme"
+   ],
+   "note_if_clear": null
+  },
+  {
+   "ps": 4,
+   "name": "Community health, safety and security",
+   "short": "Community",
+   "sections": [
+    "Infrastructure and Equipment Design and Safety",
+    "Hazardous Materials Management and Safety",
+    "Ecosystem Services",
+    "Community Exposure to Disease",
+    "Emergency Preparedness and Response",
+    "Security Personnel"
+   ],
+   "base_actions": [
+    {
+     "text": "Assess risks to community health, safety and security and include controls in the ESMS.",
+     "cite": "PS4 para 5"
+    },
+    {
+     "text": "Share emergency response arrangements with affected communities and local authorities, and help them take part.",
+     "cite": "PS4 para 11; PS1 paras 20–21"
+    }
+   ],
+   "documents": [
+    "Community health, safety and security plan",
+    "Traffic management plan",
+    "Emergency response plan shared with communities",
+    "Security risk assessment and management plan",
+    "Labour influx management plan (communicable disease; GBV/SEA controls are lender practice)",
+    "Structural safety plan and external expert review (dams, tailings dams, ash ponds in high-risk locations)"
+   ],
+   "note_if_clear": null
+  },
+  {
+   "ps": 5,
+   "name": "Land acquisition and involuntary resettlement",
+   "short": "Land",
+   "sections": [
+    "Project Design",
+    "Compensation and Benefits for Displaced Persons",
+    "Community Engagement",
+    "Grievance Mechanism",
+    "Resettlement and Livelihood Restoration Planning and Implementation",
+    "Physical Displacement",
+    "Economic Displacement",
+    "Private Sector Responsibilities Under Government-Managed Resettlement"
+   ],
+   "base_actions": [
+    {
+     "text": "Avoid or minimise displacement by considering alternative project designs and sites.",
+     "cite": "PS5 para 8"
+    },
+    {
+     "text": "Compensate for lost assets at full replacement cost and restore livelihoods. People with no legal right or recognisable claim to the land are not paid for the land, but are offered resettlement with security of tenure and compensation for non-land assets owned before the cut-off date.",
+     "cite": "PS5 paras 9, 17, 22, 27"
+    },
+    {
+     "text": "Set up a grievance mechanism for land issues early, before acquisition starts, and run a census with a published cut-off date.",
+     "cite": "PS5 paras 11–12, 23"
+    }
+   ],
+   "documents": [
+    "Land acquisition and legacy review",
+    "Census and socio-economic survey",
+    "Resettlement Action Plan (physical displacement)",
+    "Livelihood Restoration Plan (economic displacement)",
+    "Supplemental plan (government-led acquisition)",
+    "Completion audit"
+   ],
+   "note_if_clear": null
+  },
+  {
+   "ps": 6,
+   "name": "Biodiversity conservation and sustainable management of living natural resources",
+   "short": "Biodiversity",
+   "sections": [
+    "Modified Habitat",
+    "Natural Habitat",
+    "Critical Habitat",
+    "Legally Protected and Internationally Recognized Areas",
+    "Invasive Alien Species",
+    "Management of Ecosystem Services",
+    "Sustainable Management of Living Natural Resources",
+    "Supply Chain"
+   ],
+   "base_actions": [
+    {
+     "text": "Establish a biodiversity baseline and assess impacts on habitats and ecosystem services.",
+     "cite": "PS6 paras 5–6"
+    },
+    {
+     "text": "Apply the mitigation hierarchy: avoid, minimise, restore, then offset.",
+     "cite": "PS6 paras 7, 10"
+    }
+   ],
+   "documents": [
+    "Biodiversity baseline",
+    "Critical habitat assessment",
+    "Biodiversity Management Plan or Biodiversity Action Plan",
+    "Offset design (if residual impacts)",
+    "Ecosystem services review",
+    "Sustainable sourcing policy"
+   ],
+   "note_if_clear": null
+  },
+  {
+   "ps": 7,
+   "name": "Indigenous Peoples",
+   "short": "Indigenous Peoples",
+   "sections": [
+    "Avoidance of Adverse Impacts",
+    "Participation and Consent",
+    "Circumstances Requiring Free, Prior, and Informed Consent",
+    "Mitigation and Development Benefits",
+    "Private Sector Responsibilities Where Government is Responsible for Managing Indigenous Peoples Issues"
+   ],
+   "base_actions": [
+    {
+     "text": "Engage affected Indigenous communities through culturally appropriate informed consultation and participation, involving their representative bodies.",
+     "cite": "PS7 paras 10–11"
+    },
+    {
+     "text": "Prepare an Indigenous Peoples Plan, or a broader community development plan with separate components for Indigenous Peoples, with culturally appropriate benefits.",
+     "cite": "PS7 paras 9, 18–20"
+    }
+   ],
+   "documents": [
+    "Indigenous Peoples screening and social assessment",
+    "Indigenous Peoples Plan or Community Development Plan",
+    "Documented FPIC process and agreement (if required)"
+   ],
+   "note_if_clear": null
+  },
+  {
+   "ps": 8,
+   "name": "Cultural heritage",
+   "short": "Heritage",
+   "sections": [
+    "Protection of Cultural Heritage in Project Design and Execution",
+    "Chance Find Procedures",
+    "Consultation",
+    "Community Access",
+    "Removal of Replicable Cultural Heritage",
+    "Removal of Non-Replicable Cultural Heritage",
+    "Critical Cultural Heritage",
+    "Legally Protected Cultural Heritage Areas",
+    "Project's Use of Cultural Heritage"
+   ],
+   "base_actions": [
+    {
+     "text": "Site and design the project to avoid significant adverse impacts on cultural heritage, and consult the communities who use it.",
+     "cite": "PS8 paras 8–9"
+    },
+    {
+     "text": "Where there is a chance of impacts, retain competent professionals to identify and protect cultural heritage.",
+     "cite": "PS8 para 7"
+    }
+   ],
+   "documents": [
+    "Cultural heritage screening or impact assessment",
+    "Chance-find procedure (where heritage is expected to be found)",
+    "Heritage management plan (if needed)"
+   ],
+   "note_if_clear": "Good practice, not a PS8 requirement unless heritage is expected to be found: where earthworks are planned, a chance-find clause in construction contracts is cheap insurance (PS8 para 8)."
+  }
+ ],
+ "sectors": [
+  {
+   "id": "solar",
+   "label": "Solar power",
+   "risk": "med",
+   "india_ec_exempt": true,
+   "exposure": "PS3 low; PS5 and PS6 often decisive (land, grazing, birds, grassland); PS4 for lines and traffic",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "wind",
+   "label": "Wind power",
+   "risk": "med",
+   "india_ec_exempt": true,
+   "exposure": "PS6 birds and bats; PS5 land and access roads; PS4 blade throw, shadow flicker, traffic; PS7 where on tribal land",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "hydro",
+   "label": "Hydropower or dams",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "High across PS4 (dam safety), PS5, PS6 (river), PS7, PS8; cumulative impacts",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "td",
+   "label": "Power transmission and distribution",
+   "risk": "med",
+   "india_ec_exempt": true,
+   "exposure": "PS5 right-of-way; PS6 birds and forest corridors; PS4 line safety",
+   "blocks_c_extra": [],
+   "policy_note": {
+    "text": "If the project involves the retail distribution of water, electricity, piped gas or telecommunications to the general public under monopoly conditions, IFC encourages public disclosure of household tariffs and tariff adjustment mechanisms, service standards, investment obligations and any ongoing government support.",
+    "cite": "Sustainability Policy para 53"
+   }
+  },
+  {
+   "id": "thermal",
+   "label": "Thermal power",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "PS3 high (emissions, GHG, ash, hazardous materials); PS4 including ash ponds",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "transport",
+   "label": "Roads, rail or metro",
+   "risk": "med",
+   "india_ec_exempt": false,
+   "exposure": "PS4 traffic and influx; PS5 right-of-way; PS6 for forest and coastal alignments",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "ports",
+   "label": "Ports or airports",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "PS5, PS6 coastal habitat, PS4 traffic and hazardous materials",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "oilgas",
+   "label": "Oil, gas or pipelines",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "PS3, PS4 (pipeline safety), PS5 right-of-way, PS6",
+   "blocks_c_extra": [],
+   "policy_note": {
+    "text": "Where IFC invests, it assesses the governance risks to the expected benefits of an oil, gas or mining project and does not support the project if the risks outweigh the benefits. The client must publicly disclose material project payments to the host government (royalties, taxes, profit sharing). The principal contract with government, and any significant amendments, must be public, with commercially sensitive information redacted; a published summary of key terms may be accepted instead.",
+    "cite": "Sustainability Policy paras 49–52"
+   }
+  },
+  {
+   "id": "mining",
+   "label": "Mining or quarrying",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "High across PS3 to PS8; tailings safety; legacy land",
+   "blocks_c_extra": [],
+   "policy_note": {
+    "text": "Where IFC invests, it assesses the governance risks to the expected benefits of an oil, gas or mining project and does not support the project if the risks outweigh the benefits. The client must publicly disclose material project payments to the host government (royalties, taxes, profit sharing). The principal contract with government, and any significant amendments, must be public, with commercially sensitive information redacted; a published summary of key terms may be accepted instead.",
+    "cite": "Sustainability Policy paras 49–52"
+   }
+  },
+  {
+   "id": "heavy",
+   "label": "Heavy industry (cement, steel, chemicals)",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "PS3 high; PS4 hazardous materials; PS2 OHS",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "light",
+   "label": "Light manufacturing",
+   "risk": "med",
+   "india_ec_exempt": false,
+   "exposure": "PS2 and PS3 moderate; PS2 supply chain in textiles and electronics",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "agri",
+   "label": "Agribusiness or food processing",
+   "risk": "med",
+   "india_ec_exempt": false,
+   "exposure": "PS2 seasonal and child labour; PS3 pesticides; PS6 sourcing",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "forestry",
+   "label": "Forestry or plantations",
+   "risk": "high",
+   "india_ec_exempt": false,
+   "exposure": "PS6 habitat conversion; PS7 customary use; PS2",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "realestate",
+   "label": "Real estate, hospitality or commercial buildings",
+   "risk": "med",
+   "india_ec_exempt": false,
+   "exposure": "PS2 construction labour; PS4 life and fire safety; PS5 if land assembled",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "water",
+   "label": "Water, sanitation or waste",
+   "risk": "med",
+   "india_ec_exempt": false,
+   "exposure": "PS3 effluent and sludge; PS4; PS5 for pipelines and plants",
+   "blocks_c_extra": [],
+   "policy_note": {
+    "text": "If the project involves the retail distribution of water, electricity, piped gas or telecommunications to the general public under monopoly conditions, IFC encourages public disclosure of household tariffs and tariff adjustment mechanisms, service standards, investment obligations and any ongoing government support.",
+    "cite": "Sustainability Policy para 53"
+   }
+  },
+  {
+   "id": "social",
+   "label": "Healthcare or education",
+   "risk": "low",
+   "india_ec_exempt": false,
+   "exposure": "PS1 and PS2; healthcare adds PS3 medical waste (so pollution answers block Category C here)",
+   "blocks_c_extra": [
+    "p3_pollution"
+   ]
+  },
+  {
+   "id": "services",
+   "label": "Services, IT or retail",
+   "risk": "low",
+   "india_ec_exempt": false,
+   "exposure": "Usually PS1 and PS2 only",
+   "blocks_c_extra": []
+  },
+  {
+   "id": "fi",
+   "label": "Financial intermediary (bank, NBFC, fund, insurer)",
+   "risk": "fi",
+   "india_ec_exempt": false,
+   "exposure": "Apply through the FI’s ESMS to sub-projects",
+   "blocks_c_extra": []
+  }
+ ],
+ "stages": [
+  {
+   "id": "greenfield",
+   "label": "Greenfield (new site)"
+  },
+  {
+   "id": "expansion",
+   "label": "Expansion of an existing site"
+  },
+  {
+   "id": "existing",
+   "label": "Existing operations"
+  },
+  {
+   "id": "acquisition",
+   "label": "Acquisition of a company"
+  }
+ ],
+ "questions": [
+  {
+   "id": "p2_workers",
+   "ps": 2,
+   "text": "Will the project employ workers, directly or through contractors, during construction or operation?",
+   "section": "Human Resources Policies and Procedures",
+   "cite": [
+    "PS2 paras 5–7"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "The project has a workforce, direct or contracted.",
+   "if_open_confirm": "Confirm workforce numbers for construction and operation.",
+   "owner": "developer",
+   "actions_if_yes": []
+  },
+  {
+   "id": "p2_contract",
+   "ps": 2,
+   "text": "Will a large share of the work be done by contractors, subcontractors or migrant workers?",
+   "section": "Workers Engaged by Third Parties",
+   "cite": [
+    "PS2 paras 11, 24–26",
+    "GN2-71 to GN2-73"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "A large contracted or migrant workforce.",
+   "if_open_confirm": "Get the contracting strategy and expected contractor headcount.",
+   "owner": "developer / EPC contractor",
+   "actions_if_yes": [
+    {
+     "text": "Write PS2 requirements into contracts and monitor contractors’ labour and safety performance.",
+     "cite": "PS2 paras 24–26"
+    },
+    {
+     "text": "Check recruitment fees, wage payment and retention of identity documents for migrant workers; workers must keep their own passports and documents.",
+     "cite": "PS2 para 11; GN2-71 to GN2-73"
+    }
+   ]
+  },
+  {
+   "id": "p2_camps",
+   "ps": 2,
+   "text": "Will workers live in camps or project-provided accommodation?",
+   "section": "Working Conditions and Terms of Employment",
+   "cite": [
+    "PS2 para 12",
+    "GN2-32"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Worker accommodation will be provided.",
+   "if_open_confirm": "Ask whether labour camps are planned, and for how many workers.",
+   "owner": "EPC contractor",
+   "actions_if_yes": [
+    {
+     "text": "Build and run camps to the IFC/EBRD Workers’ Accommodation guidance: space, sanitation, water, fire safety and privacy; monitor conditions.",
+     "cite": "PS2 para 12; GN2-32"
+    }
+   ]
+  },
+  {
+   "id": "p2_supply",
+   "ps": 2,
+   "text": "Do primary suppliers come from sectors with known forced labour, child labour or serious safety risks (for example polysilicon, cotton, bricks, mica, seafood)?",
+   "section": "Supply Chain",
+   "cite": [
+    "PS2 paras 27–29"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "The primary supply chain carries labour risk.",
+   "if_open_confirm": "List the main materials and where primary suppliers source them.",
+   "owner": "procurement",
+   "actions_if_yes": [
+    {
+     "text": "Map primary suppliers and review the risk of child labour, forced labour and serious safety issues; require remediation, or shift to other suppliers over time, where it is found.",
+     "cite": "PS2 paras 27–29"
+    }
+   ]
+  },
+  {
+   "id": "p2_retrench",
+   "ps": 2,
+   "text": "Are layoffs or collective retrenchment planned, for example after an acquisition or restructuring?",
+   "section": "Retrenchment",
+   "cite": [
+    "PS2 paras 18–19"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "Collective retrenchment is planned.",
+   "if_open_confirm": "Check restructuring plans and post-acquisition staffing.",
+   "owner": "company HR",
+   "actions_if_yes": [
+    {
+     "text": "Prepare a retrenchment plan: alternatives analysis, consultation with workers and their organisations, notice and severance, and non-discriminatory selection.",
+     "cite": "PS2 paras 18–19"
+    }
+   ]
+  },
+  {
+   "id": "p3_pollution",
+   "ps": 3,
+   "text": "Will the project release air emissions, wastewater or waste, or use or store hazardous materials?",
+   "section": "Pollution Prevention",
+   "cite": [
+    "PS3 paras 10–13"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "Emissions, effluent, waste or hazardous materials are involved.",
+   "if_open_confirm": "Get a process description listing emissions, effluents and wastes.",
+   "owner": "developer / process engineer",
+   "actions_if_yes": [
+    {
+     "text": "Set up waste and hazardous materials management, and monitor emissions and effluents against permit and EHS Guideline limits.",
+     "cite": "PS3 paras 10–13"
+    }
+   ]
+  },
+  {
+   "id": "p3_water",
+   "ps": 3,
+   "text": "Will the project draw significant amounts of water, or is it in a water-stressed area?",
+   "section": "Water Consumption",
+   "cite": [
+    "PS3 para 9"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Significant water use or a water-stressed location.",
+   "if_open_confirm": "Find the water source, expected demand and local water stress.",
+   "owner": "developer",
+   "actions_if_yes": [
+    {
+     "text": "Assess water availability and effects on other users; adopt water efficiency and reuse measures.",
+     "cite": "PS3 para 9"
+    }
+   ]
+  },
+  {
+   "id": "p3_ghg",
+   "ps": 3,
+   "text": "Are direct emissions plus emissions from purchased energy likely to exceed 25,000 tonnes CO₂-equivalent a year?",
+   "section": "Greenhouse Gases",
+   "cite": [
+    "PS3 paras 7–8"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "GHG emissions above 25,000 tCO₂e a year.",
+   "if_open_confirm": "Estimate annual fuel and electricity use to test the 25,000 tCO₂e threshold.",
+   "owner": "developer / energy consultant",
+   "actions_if_yes": [
+    {
+     "text": "Quantify direct emissions and emissions from purchased energy annually, and consider cost-effective options to reduce them.",
+     "cite": "PS3 paras 7–8"
+    }
+   ]
+  },
+  {
+   "id": "p3_pest",
+   "ps": 3,
+   "text": "Will pesticides or other agrochemicals be used?",
+   "section": "Pesticide Use and Management",
+   "cite": [
+    "PS3 paras 14–17"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Pesticides or agrochemicals will be used.",
+   "if_open_confirm": "Check pest and vegetation control practices.",
+   "owner": "operations",
+   "actions_if_yes": [
+    {
+     "text": "Adopt integrated pest management. Do not purchase, store, use, manufacture or trade WHO Class Ia or Ib pesticides; Class II only with appropriate controls and trained handlers. Pesticides and herbicides that are illegal or internationally banned are on the IFC Exclusion List.",
+     "cite": "PS3 paras 14–17; IFC Exclusion List"
+    }
+   ]
+  },
+  {
+   "id": "p4_near",
+   "ps": 4,
+   "text": "Do communities live close to the site or along its access roads?",
+   "section": "Community Exposure to Disease",
+   "cite": [
+    "PS4 paras 5, 9–10"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "Communities live near the site or its access routes.",
+   "if_open_confirm": "Map settlements around the site and along access routes.",
+   "owner": "site team",
+   "actions_if_yes": [
+    {
+     "text": "Assess community exposure to dust, noise, water contamination and disease, and set controls.",
+     "cite": "PS4 paras 5, 9–10"
+    }
+   ]
+  },
+  {
+   "id": "p4_traffic",
+   "ps": 4,
+   "text": "Will heavy vehicles use public roads, or will hazardous materials be transported?",
+   "section": "Hazardous Materials Management and Safety",
+   "cite": [
+    "PS4 paras 6–7"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Heavy traffic or hazardous materials on public roads.",
+   "if_open_confirm": "Get the construction logistics plan and expected vehicle movements.",
+   "owner": "EPC contractor",
+   "actions_if_yes": [
+    {
+     "text": "Prepare a traffic and road safety plan; train drivers and manage routes near schools and villages; control the safety of hazardous materials deliveries.",
+     "cite": "PS4 paras 6–7"
+    }
+   ]
+  },
+  {
+   "id": "p4_infra",
+   "ps": 4,
+   "text": "Does the project include structures or buildings the public will use, or whose failure could endanger the public (tanks, pipelines, transmission lines, bridges, tall buildings)? Dams, tailings dams and ash ponds are asked separately.",
+   "section": "Infrastructure and Equipment Design and Safety",
+   "cite": [
+    "PS4 para 6"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "Structures that could endanger the public if they fail, or that the public will use.",
+   "if_open_confirm": "Identify structural elements whose failure could affect the public.",
+   "owner": "design engineer",
+   "actions_if_yes": [
+    {
+     "text": "Have competent professionals design and build structures to good international industry practice, certified or approved by competent authorities or professionals; consider fire, life safety and universal access for buildings the public uses.",
+     "cite": "PS4 para 6"
+    },
+    {
+     "text": "Prepare emergency response plans jointly with local authorities and communities.",
+     "cite": "PS4 para 11"
+    }
+   ]
+  },
+  {
+   "id": "p4_dam",
+   "ps": 4,
+   "text": "Does the project include a dam, tailings dam or ash pond in a location where its failure could threaten communities (settlements downstream, steep terrain, seismic zone)?",
+   "section": "Infrastructure and Equipment Design and Safety",
+   "cite": [
+    "PS4 para 6"
+   ],
+   "basis": "PS",
+   "a_signal": true,
+   "blocks_c": true,
+   "if_yes_reason": "A dam, tailings dam or ash pond whose failure could threaten communities.",
+   "if_open_confirm": "Ask the design engineer whether any dam, tailings dam or ash pond is planned and who lives downstream.",
+   "owner": "design engineer",
+   "actions_if_yes": [
+    {
+     "text": "Engage external experts, separate from the designers and builders, to review the structure from early development through design, construction, operation and decommissioning.",
+     "cite": "PS4 para 6"
+    }
+   ]
+  },
+  {
+   "id": "p4_security",
+   "ps": 4,
+   "text": "Will private security guards or public security forces protect the site?",
+   "section": "Security Personnel",
+   "cite": [
+    "PS4 paras 12–14"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": false,
+   "if_yes_reason": "Security personnel will be used.",
+   "if_open_confirm": "Ask whether guards or police will be deployed at site.",
+   "owner": "developer",
+   "actions_if_yes": [
+    {
+     "text": "Assess security risks; make reasonable inquiries that guards are not implicated in past abuses; train them in use of force and conduct toward workers and communities; allow force only for preventive and defensive purposes in proportion to the threat. For public security forces, assess and document the risks. Provide a grievance mechanism for communities. (The Voluntary Principles on Security and Human Rights are a common benchmark; the Performance Standard text does not name them.)",
+     "cite": "PS4 paras 12–14"
+    }
+   ]
+  },
+  {
+   "id": "p4_influx",
+   "ps": 4,
+   "text": "Will many outside workers arrive compared with the local population?",
+   "section": "Community Exposure to Disease",
+   "cite": [
+    "PS4 para 10",
+    "GN4-18 to GN4-20"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "A large labour influx is expected.",
+   "if_open_confirm": "Compare peak workforce with the population of nearby villages.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Manage the communicable disease risk that comes with labour influx (health screening, awareness programmes with host communities).",
+     "cite": "PS4 para 10; GN4-18 to GN4-20"
+    },
+    {
+     "text": "Lender practice, not PS4 text: add a worker code of conduct, a community grievance channel, and controls on gender-based violence and sexual exploitation.",
+     "cite": "EMC practice"
+    }
+   ]
+  },
+  {
+   "id": "p5_land",
+   "ps": 5,
+   "text": "Does the project need land that is not already built-up premises leased on the open market: new land, a purchase, a long lease, a right-of-way or an easement?",
+   "section": "Project Design",
+   "cite": [
+    "PS5 paras 5–6"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "New land, right-of-way or lease is needed. PS5 applies unless every parcel is a genuinely voluntary transaction (PS5 para 6), which has to be shown.",
+   "if_open_confirm": "Get the land schedule: area, ownership and how each parcel is being secured.",
+   "owner": "land records / developer",
+   "actions_if_yes": [
+    {
+     "text": "Show, parcel by parcel, that each transaction was voluntary (the seller was not obliged to sell and the buyer could not have used expropriation). Where it was not, or where people used the land, PS5 applies in full.",
+     "cite": "PS5 paras 5–6"
+    }
+   ]
+  },
+  {
+   "id": "p5_users",
+   "ps": 5,
+   "text": "Do people live on, farm, graze or collect resources from that land, including government or ‘vacant’ land?",
+   "section": "Economic Displacement",
+   "cite": [
+    "PS5 paras 5, 17, 23",
+    "PS5 fn 8"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "People use the land, formally or informally.",
+   "if_open_confirm": "Commission a land-use and livelihood survey. ‘Vacant’ government land does not by itself rule out PS5.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Run a census and socio-economic survey with a published cut-off date, covering informal users. Those with no legal claim are not paid for the land but receive compensation for non-land assets and help to restore livelihoods.",
+     "cite": "PS5 paras 12, 17, 22–23"
+    },
+    {
+     "text": "Prepare a Livelihood Restoration Plan for economic displacement.",
+     "cite": "PS5 paras 25–29"
+    }
+   ]
+  },
+  {
+   "id": "p5_relocate",
+   "ps": 5,
+   "text": "Will any households have to move their homes or structures?",
+   "section": "Physical Displacement",
+   "cite": [
+    "PS5 paras 18–22"
+   ],
+   "basis": "PS",
+   "a_signal": true,
+   "blocks_c": true,
+   "if_yes_reason": "Households will be physically displaced.",
+   "if_open_confirm": "Check whether any dwellings or structures fall within the footprint or right-of-way.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Prepare a Resettlement Action Plan with replacement housing or cash at full replacement cost, security of tenure, and transition support.",
+     "cite": "PS5 paras 19–22"
+    }
+   ]
+  },
+  {
+   "id": "p5_scale",
+   "ps": 5,
+   "text": "Is the loss of land or land access likely to affect many people, whole communities, or the main livelihood of many users?",
+   "section": "Economic Displacement",
+   "cite": [
+    "PS5 paras 25–29"
+   ],
+   "basis": "EMC",
+   "a_signal": true,
+   "blocks_c": true,
+   "if_yes_reason": "Land loss or restricted access could affect many people or their main livelihoods.",
+   "if_open_confirm": "Get the land-use survey or at least a count of households that farm, graze or collect resources on the land.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Size the livelihood impacts early and treat the Livelihood Restoration Plan as a major workstream, with independent monitoring and a completion audit.",
+     "cite": "PS5 paras 14–15, 25–29"
+    }
+   ]
+  },
+  {
+   "id": "p5_expro",
+   "ps": 5,
+   "text": "Is the government acquiring the land, or could it expropriate if negotiations fail?",
+   "section": "Private Sector Responsibilities Under Government-Managed Resettlement",
+   "cite": [
+    "PS5 paras 5, 30–31"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Government acquisition or expropriation is involved.",
+   "if_open_confirm": "Check whether land is acquired under acquisition law, or by negotiation backed by expropriation powers.",
+   "owner": "land records / legal",
+   "actions_if_yes": [
+    {
+     "text": "Treat the acquisition as involuntary; identify the government’s resettlement measures and, where they fall short of PS5, prepare a supplemental plan with top-up compensation where needed.",
+     "cite": "PS5 paras 30–31"
+    }
+   ]
+  },
+  {
+   "id": "p5_access",
+   "ps": 5,
+   "text": "Will people lose access to grazing land, forests, fishing grounds or other natural resources?",
+   "section": "Economic Displacement",
+   "cite": [
+    "PS5 para 5"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Access to land or natural resources will be restricted.",
+   "if_open_confirm": "Identify community use of resources in and around the footprint.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Agree measures for access restriction and alternative livelihoods with the affected users.",
+     "cite": "PS5 paras 5, 25–29"
+    }
+   ]
+  },
+  {
+   "id": "p5_legacy",
+   "ps": 5,
+   "text": "Was land for this project acquired earlier by the government or a previous owner?",
+   "section": "Private Sector Responsibilities Under Government-Managed Resettlement",
+   "cite": [
+    "PS1 para 9",
+    "PS5 paras 30–31"
+   ],
+   "basis": "EMC",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Land was acquired earlier by a third party.",
+   "if_open_confirm": "Get records of earlier acquisition, compensation paid and outstanding grievances.",
+   "owner": "land records / legal",
+   "actions_if_yes": [
+    {
+     "text": "Carry out a legacy land audit and agree a corrective action plan for any gaps against PS5. (Lenders expect this because the project inherits third-party risks; PS1 requires the client to address them as far as it can.)",
+     "cite": "PS1 para 9; PS5 paras 30–31"
+    }
+   ]
+  },
+  {
+   "id": "p6_protected",
+   "ps": 6,
+   "text": "Is the site within or near a legally protected area or an internationally recognised area (UNESCO Natural World Heritage Site, Man and the Biosphere reserve, Key Biodiversity Area, Ramsar wetland), or an eco-sensitive zone? About 10 km is a screening distance, not a PS rule.",
+   "section": "Legally Protected and Internationally Recognized Areas",
+   "cite": [
+    "PS6 para 20 and fn 17"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Near a protected or internationally recognised area.",
+   "if_open_confirm": "Run an IBAT or equivalent proximity screen.",
+   "owner": "E&S consultant (IBAT screen)",
+   "actions_if_yes": [
+    {
+     "text": "Demonstrate the project is legally permitted, follow the area’s management plan, consult its managers and communities, and add programmes that support the area’s conservation aims.",
+     "cite": "PS6 para 20"
+    }
+   ]
+  },
+  {
+   "id": "p6_natural",
+   "ps": 6,
+   "text": "Will the project clear or alter natural habitat (forest, grassland, wetland, river, mangrove, coast)?",
+   "section": "Natural Habitat",
+   "cite": [
+    "PS6 paras 13–15"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Natural habitat will be converted or altered.",
+   "if_open_confirm": "Commission a habitat map of the footprint.",
+   "owner": "specialist ecologist",
+   "actions_if_yes": [
+    {
+     "text": "Do not significantly convert or degrade natural habitat unless the conditions in para 14 are met; design mitigation for no net loss of biodiversity.",
+     "cite": "PS6 paras 14–15"
+    }
+   ]
+  },
+  {
+   "id": "p6_species",
+   "ps": 6,
+   "text": "Could the site hold critical habitat: habitat that matters for Critically Endangered or Endangered species, endemic or restricted-range species, large concentrations of migratory or congregatory species (flyways, stopovers), or highly threatened ecosystems? Examples: Great Indian Bustard, vultures, elephant corridors.",
+   "section": "Critical Habitat",
+   "cite": [
+    "PS6 paras 16–19"
+   ],
+   "basis": "PS",
+   "a_signal": true,
+   "blocks_c": true,
+   "if_yes_reason": "The site may hold critical habitat (threatened, endemic or migratory species).",
+   "if_open_confirm": "Ask a specialist ecologist for a species presence check that looks beyond notified protected areas.",
+   "owner": "specialist ecologist",
+   "actions_if_yes": [
+    {
+     "text": "Carry out a Critical Habitat Assessment; the habitat often extends beyond notified boundaries.",
+     "cite": "PS6 para 16"
+    },
+    {
+     "text": "Where critical habitat is confirmed, show there is no viable alternative on non-critical habitat, no measurable adverse impact on the qualifying biodiversity values, no net reduction of any Critically Endangered or Endangered species population, and a long-term monitoring programme; then describe the mitigation in a Biodiversity Action Plan designed for net gains.",
+     "cite": "PS6 paras 17–18"
+    }
+   ]
+  },
+  {
+   "id": "p6_living",
+   "ps": 6,
+   "text": "Does the project produce or buy living natural resources (crops, timber, palm oil, fish, aquaculture)?",
+   "section": "Sustainable Management of Living Natural Resources",
+   "cite": [
+    "PS6 paras 26–30"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Production or sourcing of living natural resources.",
+   "if_open_confirm": "Check whether the project produces or buys agricultural, forestry or fishery products.",
+   "owner": "procurement",
+   "actions_if_yes": [
+    {
+     "text": "Apply credible sustainability standards to production, and check primary suppliers are not converting natural or critical habitat.",
+     "cite": "PS6 paras 26–30"
+    }
+   ]
+  },
+  {
+   "id": "p6_services",
+   "ps": 6,
+   "text": "Do local communities depend on ecosystems the project could affect (water, fuelwood, fisheries, flood protection)?",
+   "section": "Management of Ecosystem Services",
+   "cite": [
+    "PS6 paras 24–25",
+    "PS4 para 8"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Communities depend on ecosystem services the project could affect.",
+   "if_open_confirm": "Identify ecosystem services used by nearby communities.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Assess priority ecosystem services and maintain their value and function for affected communities.",
+     "cite": "PS6 paras 24–25"
+    }
+   ]
+  },
+  {
+   "id": "p7_present",
+   "ps": 7,
+   "text": "Are Indigenous Peoples present in or using the project area (in India, Scheduled Tribes or Adivasi communities, or a Fifth or Sixth Schedule area)?",
+   "section": "Avoidance of Adverse Impacts",
+   "cite": [
+    "PS7 paras 4–8"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Indigenous Peoples are present in the area of influence.",
+   "if_open_confirm": "Check the Scheduled Area status of affected villages and census data on Scheduled Tribe population.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Screen and assess impacts on Indigenous Peoples through a social assessment by qualified specialists; take advice on whether a group counts as Indigenous Peoples for PS7.",
+     "cite": "PS7 paras 7–8"
+    }
+   ]
+  },
+  {
+   "id": "p7_fpic",
+   "ps": 7,
+   "text": "Will the project be on, or take natural resources from, land that Indigenous Peoples traditionally own or customarily use; relocate them from such land; or significantly affect cultural heritage that is critical to them?",
+   "section": "Circumstances Requiring Free, Prior, and Informed Consent",
+   "cite": [
+    "PS7 paras 12–16"
+   ],
+   "basis": "PS",
+   "a_signal": true,
+   "blocks_c": true,
+   "if_yes_reason": "Circumstances that require Free, Prior and Informed Consent.",
+   "if_open_confirm": "Check customary claims, forest rights titles and community use of the footprint.",
+   "owner": "social specialist",
+   "actions_if_yes": [
+    {
+     "text": "Obtain and document Free, Prior and Informed Consent through good-faith negotiation with the affected communities, supported by an independent expert as needed. IFC as investor reviews the consent process in depth.",
+     "cite": "PS7 paras 12–17; Sustainability Policy para 31"
+    }
+   ]
+  },
+  {
+   "id": "p8_known",
+   "ps": 8,
+   "text": "Are there known heritage sites near the footprint (protected monuments, temples, sacred groves, graves, shrines)?",
+   "section": "Protection of Cultural Heritage in Project Design and Execution",
+   "cite": [
+    "PS8 paras 6–10"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Known cultural heritage near the site.",
+   "if_open_confirm": "Check national and state protected monument lists, and ask communities about sacred places.",
+   "owner": "heritage specialist / site team",
+   "actions_if_yes": [
+    {
+     "text": "Retain competent professionals, consult the communities that use the site, and keep community access to it.",
+     "cite": "PS8 paras 7, 9–10"
+    }
+   ]
+  },
+  {
+   "id": "p8_critical",
+   "ps": 8,
+   "text": "Could the project significantly damage or remove cultural heritage that cannot be replaced, or that is internationally or nationally important (a World Heritage property, an ancient monument, a major sacred site)?",
+   "section": "Critical Cultural Heritage",
+   "cite": [
+    "PS8 paras 12–15"
+   ],
+   "basis": "PS",
+   "a_signal": true,
+   "blocks_c": true,
+   "if_yes_reason": "Critical cultural heritage could be significantly affected.",
+   "if_open_confirm": "Ask a heritage specialist whether any footprint or access route touches a nationally or internationally important heritage site.",
+   "owner": "heritage specialist",
+   "actions_if_yes": [
+    {
+     "text": "Do not remove, significantly alter or damage critical cultural heritage. Where that is unavoidable in exceptional circumstances, run informed consultation and participation with a good-faith negotiation and a documented outcome, and retain external experts.",
+     "cite": "PS8 paras 13–14"
+    }
+   ]
+  },
+  {
+   "id": "p8_dig",
+   "ps": 8,
+   "text": "Will there be significant excavation or earthworks in an area where cultural heritage is likely to be found?",
+   "section": "Chance Find Procedures",
+   "cite": [
+    "PS8 paras 7–8"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Ground disturbance in an area where cultural heritage is expected to be found.",
+   "if_open_confirm": "Get the earthworks plan and an archaeological potential screen.",
+   "owner": "heritage specialist",
+   "actions_if_yes": [
+    {
+     "text": "Have qualified specialists screen archaeological potential before earthworks start, and put a chance-find procedure into the ESMS: work stops at a find until competent professionals assess it.",
+     "cite": "PS8 paras 7–8"
+    }
+   ]
+  },
+  {
+   "id": "p8_use",
+   "ps": 8,
+   "text": "Will the project use cultural heritage or traditional knowledge for commercial purposes?",
+   "section": "Project’s Use of Cultural Heritage",
+   "cite": [
+    "PS8 para 16",
+    "PS7 para 17"
+   ],
+   "basis": "PS",
+   "a_signal": false,
+   "blocks_c": true,
+   "if_yes_reason": "Commercial use of cultural heritage.",
+   "if_open_confirm": "Check whether heritage sites or traditional knowledge are part of the business model.",
+   "owner": "developer",
+   "actions_if_yes": [
+    {
+     "text": "Inform the communities of their rights, the scope of the commercial use and its consequences; do not proceed without informed consultation and participation (good-faith negotiation, documented outcome) and fair, equitable benefit sharing. For Indigenous Peoples’ heritage, Free, Prior and Informed Consent applies and PS7 governs.",
+     "cite": "PS8 para 16; PS7 para 17"
+    }
+   ]
+  }
+ ],
+ "category_rules": {
+  "description": "Evaluated in order; the first rule that matches wins. The category is provisional. The meaning of each category follows the IFC Sustainability Policy (2012) paragraphs 40–44. The rules that turn checklist answers into a category are EMC judgement: the Policy defines the categories in words and does not prescribe them.",
+  "min_informative_answers": 10,
+  "order": [
+   {
+    "id": "fi",
+    "when": {
+     "sector_risk": "fi"
+    },
+    "category": "FI",
+    "label": "Financial intermediary",
+    "why": "Investment through a financial intermediary. IFC sets FI-1, FI-2 or FI-3 from the exposure of the portfolio (type, size, sector, tenor), which this checklist does not collect (Sustainability Policy paras 40, 44). The FI applies the Exclusion List and national law to sub-projects and runs an ESMS that fits the risk of its portfolio. To screen a sub-project, answer the questions for a typical higher-risk one: the standards then show what it would trigger. PS2 also applies to the FI’s own staff (FI Guidance Note para 18)."
+   },
+   {
+    "id": "A",
+    "when": {
+     "any_a_signal": true
+    },
+    "category": "A",
+    "label": "Provisional Category A",
+    "why": "Potentially significant adverse risks or impacts that are diverse, irreversible or unprecedented (Sustainability Policy para 40). Expect a full ESIA."
+   },
+   {
+    "id": "none",
+    "when": {
+     "no_sector": true,
+     "or_informative_answers_below_min": true
+    },
+    "category": "-",
+    "label": "Not yet categorised",
+    "why": "Choose a sector and answer at least 10 questions with Yes or No to get a provisional category."
+   },
+   {
+    "id": "C",
+    "when": {
+     "sector_risk": "low",
+     "no_blocks_c_answered_yes": true
+    },
+    "category": "C",
+    "label": "Provisional Category C",
+    "why": "Minimal or no adverse risks or impacts on current answers (Sustainability Policy para 40).",
+    "note_if_any_open": "Questions that could move this to B are still open or marked Not sure."
+   },
+   {
+    "id": "B",
+    "when": "default",
+    "category": "B",
+    "label": "Provisional Category B",
+    "why": "Potentially limited adverse risks or impacts: few in number, generally site-specific, largely reversible and readily addressed through mitigation (Sustainability Policy para 40). A focused assessment and ESMP are expected."
+   }
+  ],
+  "a_signals": [
+   {
+    "id": "question_a_signal",
+    "type": "question_flag",
+    "description": "Every question with a_signal true adds its if_yes_reason when answered Yes."
+   },
+   {
+    "id": "high_risk_greenfield",
+    "type": "sector_stage",
+    "sector_risk": "high",
+    "stage": "greenfield",
+    "reason": "High-risk sector on a greenfield site.",
+    "basis": "EMC judgement. Sustainability Policy paras 42–43 require the inherent risk of the sector and the setting to be weighed when the footprint is not yet known; they do not name sectors or say a greenfield site is Category A."
+   },
+   {
+    "id": "habitat_near_protected",
+    "type": "all_answers",
+    "answers": {
+     "p6_natural": "yes",
+     "p6_protected": "yes"
+    },
+    "reason": "Natural habitat altered near a protected or internationally recognised area."
+   },
+   {
+    "id": "ip_heritage_commercial",
+    "type": "all_answers",
+    "answers": {
+     "p7_present": "yes",
+     "p8_use": "yes"
+    },
+    "reason": "Commercial use of Indigenous Peoples’ cultural heritage requires Free, Prior and Informed Consent (PS7 para 17)."
+   }
+  ],
+  "watch": {
+   "description": "For B or C: every question with a_signal true that is not answered No becomes a ‘could move to A’ item, using its if_open_confirm text."
+  }
+ },
+ "sanity_checks": [
+  {
+   "id": "power_land",
+   "sector_in": [
+    "solar",
+    "wind",
+    "td"
+   ],
+   "answers": {
+    "p5_land": "no"
+   },
+   "message": "Solar, wind and transmission projects nearly always need land or a right-of-way. Check the No on the land question."
+  },
+  {
+   "id": "hydro_dam",
+   "sector_in": [
+    "hydro"
+   ],
+   "answers": {
+    "p4_dam": "no"
+   },
+   "message": "Hydropower normally includes a dam or weir. Check the No on the dam question."
+  },
+  {
+   "id": "hydro_land",
+   "sector_in": [
+    "hydro",
+    "mining",
+    "ports",
+    "transport",
+    "oilgas"
+   ],
+   "answers": {
+    "p5_land": "no"
+   },
+   "message": "This type of project nearly always needs land or a right-of-way. Check the No on the land question."
+  },
+  {
+   "id": "thermal_pollution",
+   "sector_in": [
+    "thermal",
+    "heavy",
+    "mining",
+    "oilgas",
+    "water",
+    "light",
+    "agri"
+   ],
+   "answers": {
+    "p3_pollution": "no"
+   },
+   "message": "This sector releases emissions, effluent or waste. Check the No on the pollution question."
+  },
+  {
+   "id": "thermal_ghg",
+   "sector_in": [
+    "thermal"
+   ],
+   "answers": {
+    "p3_ghg": "no"
+   },
+   "message": "Thermal power is very likely to exceed 25,000 tCO₂e a year. Check the No on the GHG question."
+  },
+  {
+   "id": "thermal_ash",
+   "sector_in": [
+    "thermal"
+   ],
+   "answers": {
+    "p4_dam": "no"
+   },
+   "message": "Coal-based thermal plants normally have an ash pond. Check the No on the dam, tailings or ash pond question."
+  },
+  {
+   "id": "mining_tailings",
+   "sector_in": [
+    "mining"
+   ],
+   "answers": {
+    "p4_dam": "no"
+   },
+   "message": "Most mines have a tailings or waste storage facility. Check the No on the dam, tailings or ash pond question."
+  },
+  {
+   "id": "mining_habitat",
+   "sector_in": [
+    "mining",
+    "forestry",
+    "hydro"
+   ],
+   "answers": {
+    "p6_natural": "no"
+   },
+   "message": "Mines, plantations and dams almost always alter natural habitat. Check the No on the habitat question."
+  },
+  {
+   "id": "agri_living",
+   "sector_in": [
+    "agri",
+    "forestry"
+   ],
+   "answers": {
+    "p6_living": "no"
+   },
+   "message": "Agribusiness and forestry produce or buy living natural resources. Check the No on that question."
+  },
+  {
+   "id": "agri_pest",
+   "sector_in": [
+    "agri"
+   ],
+   "answers": {
+    "p3_pest": "no"
+   },
+   "message": "Most agricultural operations use some agrochemicals. Check the No on the pesticide question."
+  },
+  {
+   "id": "workforce_all",
+   "sector_in": [
+    "solar",
+    "wind",
+    "hydro",
+    "td",
+    "thermal",
+    "transport",
+    "ports",
+    "oilgas",
+    "mining",
+    "heavy",
+    "light",
+    "agri",
+    "forestry",
+    "realestate",
+    "water",
+    "social",
+    "services"
+   ],
+   "answers": {
+    "p2_workers": "no"
+   },
+   "message": "Every project has some workforce. Check the No on the workforce question."
+  }
+ ],
+ "exclusion_list": {
+  "name": "IFC Exclusion List (2007), as amended 8 December 2025",
+  "source": "https://www.ifc.org/exclusionlist (text supplied by EMC, 29 October 2026). Applies to transactions and engagements mandated after 31 December 2025.",
+  "cite": "Sustainability Policy para 19; IFC Exclusion List",
+  "prompt": "Before relying on this result, confirm the project does not involve an activity on the IFC Exclusion List. IFC does not finance such projects, whatever the Performance Standards result.",
+  "fi_prompt": "For a financial intermediary the list applies to the sub-projects it finances, with extra exclusions for FIs (forced and harmful child labour; commercial logging in primary tropical moist forest; wood and forestry products not from sustainably managed forests). Microfinance and trade finance have shorter lists.",
+  "intro": "IFC does not finance the following projects:",
+  "items": [
+   {
+    "text": "Production or trade in any product or activity deemed illegal under host country laws or regulations or international conventions and agreements, or subject to international bans, such as pharmaceuticals, pesticides/herbicides, ozone depleting substances, PCB’s, wildlife or products regulated under CITES."
+   },
+   {
+    "text": "Production or trade in weapons and munitions.",
+    "footnote": "1"
+   },
+   {
+    "text": "Production or trade in alcoholic beverages (excluding beer and wine).",
+    "footnote": "1"
+   },
+   {
+    "text": "Production or trade in tobacco.",
+    "footnote": "1"
+   },
+   {
+    "text": "Gambling, casinos and equivalent enterprises.",
+    "footnote": "1"
+   },
+   {
+    "text": "Production or trade in unbonded asbestos fibers. This does not apply to purchase and use of bonded asbestos cement sheeting where the asbestos content is less than 20%."
+   },
+   {
+    "text": "Drift net fishing in the marine environment using nets in excess of 2.5 km. in length."
+   }
+  ],
+  "footnotes": {
+   "1": "This does not apply to project sponsors who are not substantially involved in these activities. “Not substantially involved” means that the activity concerned is ancillary to a project sponsor’s primary operations.",
+   "2": "Forced labor means all work or service, not voluntarily performed, that is extracted from an individual under threat of force or penalty.",
+   "3": "Harmful child labor means the employment of children that is economically exploitive, or is likely to be hazardous to, or to interfere with, the child’s education, or to be harmful to the child’s health, or physical, mental, spiritual, moral, or social development."
+  },
+  "reasonableness_test": "A reasonableness test will be applied when the activities of the project company would have a significant development impact but circumstances of the country require adjustment to the Exclusion List.",
+  "fi_additional": {
+   "general": {
+    "label": "All financial intermediaries, except microfinance and trade finance below, apply these in addition to the Exclusion List",
+    "items": [
+     {
+      "text": "Production or activities involving harmful or exploitative forms of forced labor/harmful child labor.",
+      "footnote": "2, 3"
+     },
+     {
+      "text": "Commercial logging operations for use in primary tropical moist forest."
+     },
+     {
+      "text": "Production or trade in wood or other forestry products other than from sustainably managed forests."
+     }
+    ]
+   },
+   "microfinance": {
+    "label": "When investing in microfinance activities, FIs apply these in addition to the Exclusion List",
+    "items": [
+     {
+      "text": "Production or activities involving harmful or exploitative forms of forced labor/harmful child labor.",
+      "footnote": "2, 3"
+     },
+     {
+      "text": "Production, trade, storage, or transport of significant volumes of hazardous chemicals, or commercial scale usage of hazardous chemicals. Hazardous chemicals include gasoline, kerosene, and other petroleum products."
+     },
+     {
+      "text": "Production or activities that impinge on the lands owned, or claimed under adjudication, by Indigenous Peoples, without full documented consent of such peoples."
+     }
+    ]
+   },
+   "trade_finance": {
+    "label": "For trade finance projects, FIs apply this in addition to the Exclusion List",
+    "items": [
+     {
+      "text": "Production or activities involving harmful or exploitative forms of forced labor/harmful child labor.",
+      "footnote": "2, 3"
+     }
+    ]
+   }
+  },
+  "fi_substantially_involved": "For an FI, “substantially involved” (footnote 1) is generally taken to mean a cumulative portfolio exposure above 5 percent to investees or borrowers that earn more than 20 percent of their revenues from an excluded activity (for multi-seller e-commerce platforms, a gross merchandise value indicator replaces the revenue test). The 5 percent threshold would not generally apply to private equity funds. FIs that serve only individual retail clients (mortgages, student loans) are generally not required to apply the Exclusion List.",
+  "fi_cite": "FI Guidance Note para 7 and fn 8–10, 31",
+  "amendment_note": "The list was amended on 8 December 2025 to remove ‘production or trade in radioactive materials’. An older copy that still lists radioactive materials is out of date.",
+  "other_restrictions_note": "IFC may also restrict activities beyond this list in a project’s legal documents. For FI projects with a defined use of proceeds it excludes coal-related sub-projects (coal mining, coal transport, coal-fired power plants and infrastructure dedicated to them) and trade finance for thermal coal (FI Guidance Note para 7 and fn 11)."
+ },
+ "national_law": {
+  "IN": {
+   "last_reviewed": "2026-10",
+   "verify": true,
+   "by_ps": {
+    "1": "The EIA Notification 2006 requires prior Environmental Clearance only for listed project categories. Projects outside the list still need an IFC PS-aligned assessment if the financing applies the Performance Standards.",
+    "2": "The four Labour Codes (in force from 21 November 2025) and state rules cover wages, social security and safety. PS2 adds oversight of contractor and supply chain labour, a worker grievance mechanism for all workers, and a fair retrenchment process.",
+    "3": "Consent to Establish and Consent to Operate from the State Pollution Control Board and the Hazardous and Other Wastes Rules 2016 cover pollution control. PS3 adds the EHS Guidelines (the more stringent applies), resource efficiency and annual GHG quantification above 25,000 tCO₂e.",
+    "4": "Indian law has no general requirement to assess community health and safety outside hazardous-industry rules; the Dam Safety Act 2021 covers specified dams. Expectations on security personnel conduct and on external review of high-risk dams and tailings dams come mainly from PS4.",
+    "5": "RFCTLARR 2013 governs government acquisition but not private negotiated purchase, and gives limited cover to informal users. PS5 applies to negotiated purchases only where expropriation was the fallback, and covers informal users and economic displacement.",
+    "6": "The Wildlife (Protection) Act 1972, the Biological Diversity Act 2002, the forest conservation law (now the Van (Sanrakshan Evam Samvardhan) Adhiniyam 1980) and eco-sensitive zone notifications protect designated areas. The PS6 critical habitat test has no direct Indian equivalent.",
+    "7": "Fifth and Sixth Schedule provisions, PESA 1996 and the Forest Rights Act 2006 give gram sabhas consultation and consent roles. PS7 applies in wider circumstances, and FPIC must be documented.",
+    "8": "The AMASR Act 1958 sets prohibited (100 m) and regulated (200 m) zones around centrally protected monuments. Community and intangible heritage is covered mainly by PS8."
+   },
+   "ec_gate_note": "This sector is not listed in the schedule of India’s EIA Notification 2006, so IFC PS, through the financier, may be the only framework requiring an E&S assessment."
+  }
+ },
+ "disclaimer": "First-pass screening only. It does not replace an ESDD, ESIA or ESMS, and the category is provisional."
+}

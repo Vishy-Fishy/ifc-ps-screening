@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IFC Performance Standards screening tool</title>
+<style>
+:root{
+  --bg:#EEF2F0; --surface:#FFFFFF; --ink:#16302C; --muted:#566B66; --line:#CFD9D5;
+  --accent:#0D6A60; --accent-ink:#FFFFFF;
+  --trig:#A93D2A; --trig-ink:#FFFFFF; --trig-soft:#F6E1DB;
+  --rev:#8E6400; --rev-soft:#F4E9C8;
+  --clear:#5F736D; --clear-soft:#E2E9E6;
+  --focus:#1F5FBF;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1A18; --surface:#16231F; --ink:#E3EDEA; --muted:#9DB0AB; --line:#2C3D39;
+    --accent:#4FB3A6; --accent-ink:#0B1512;
+    --trig:#E0715C; --trig-ink:#1A0D09; --trig-soft:#3A201A;
+    --rev:#E0B44C; --rev-soft:#33290F;
+    --clear:#8FA39D; --clear-soft:#22302C;
+    --focus:#8DB6FF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1A18; --surface:#16231F; --ink:#E3EDEA; --muted:#9DB0AB; --line:#2C3D39;
+  --accent:#4FB3A6; --accent-ink:#0B1512;
+  --trig:#E0715C; --trig-ink:#1A0D09; --trig-soft:#3A201A;
+  --rev:#E0B44C; --rev-soft:#33290F;
+  --clear:#8FA39D; --clear-soft:#22302C;
+  --focus:#8DB6FF;
+  color-scheme: dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:32px 20px 48px}
+header.top{max-width:720px;margin-bottom:28px}
+h1{font-size:clamp(1.9rem,4.2vw,2.8rem);line-height:1.08;font-weight:800;letter-spacing:-0.02em;margin:0 0 12px}
+.lede{color:var(--muted);margin:0;max-width:62ch}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.layout{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:960px){.layout{grid-template-columns:minmax(0,1fr) 380px;align-items:start}}
+form{display:grid;gap:18px}
+fieldset{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:18px 18px 8px;margin:0;min-width:0}
+legend{font-weight:700;font-size:1.05rem;padding:0 6px;margin-left:-6px}
+legend .psn{color:var(--accent);margin-right:8px}
+.q{padding:12px 0;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:none;padding-top:4px}
+.qt{margin:0 0 4px;max-width:68ch}
+.qc{margin:0 0 8px;font-size:.78rem;color:var(--muted)}
+.tag{display:inline-block;margin-left:6px;padding:0 6px;border:1px solid var(--line);border-radius:4px;font-size:.72rem}
+.opts{display:flex;gap:6px;flex-wrap:wrap}
+.opts label{position:relative;cursor:pointer}
+.opts input{position:absolute;opacity:0;width:1px;height:1px}
+.opts span{display:inline-block;padding:6px 14px;border:1px solid var(--line);border-radius:6px;font-size:.92rem;font-weight:600;color:var(--muted);background:transparent;min-width:64px;text-align:center}
+.opts input:focus-visible + span{outline:2px solid var(--focus);outline-offset:2px}
+.opts input[value="yes"]:checked + span{background:var(--trig);border-color:var(--trig);color:var(--trig-ink)}
+.opts input[value="no"]:checked + span{background:var(--clear-soft);border-color:var(--clear);color:var(--ink)}
+.opts input[value="unsure"]:checked + span{background:var(--rev-soft);border-color:var(--rev);color:var(--ink)}
+.basics{display:grid;gap:14px;padding-bottom:10px}
+@media (min-width:640px){.basics{grid-template-columns:1fr 1fr}}
+.field label{display:block;font-weight:600;font-size:.92rem;margin-bottom:4px}
+.field input,.field select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.field input:focus-visible,.field select:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.field.full{grid-column:1/-1}
+
+aside{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+@media (min-width:960px){aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);max-height:calc(100vh - 32px);overflow:auto}}
+aside h2{font-size:1rem;margin:0 0 12px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px}
+.cell{border:1px solid var(--line);border-radius:6px;padding:8px 6px 7px;text-align:left;font:inherit;color:var(--ink);background:var(--surface);cursor:pointer;min-height:64px;display:flex;flex-direction:column;justify-content:space-between}
+.cell b{font-size:1.15rem;font-weight:800;letter-spacing:-0.01em;line-height:1}
+.cell small{font-size:.72rem;line-height:1.2;color:inherit;opacity:.85}
+.cell.trig{background:var(--trig);border-color:var(--trig);color:var(--trig-ink)}
+.cell.review{background:var(--rev-soft);border-color:var(--rev)}
+.cell.clear{background:var(--clear-soft);border-color:var(--clear-soft);color:var(--muted)}
+.cell.open{border-style:dashed;color:var(--muted)}
+.key{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.78rem;color:var(--muted);margin:-6px 0 16px}
+.key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.cat{border-top:1px solid var(--line);padding-top:14px}
+.catrow{display:flex;gap:14px;align-items:center}
+.catletter{font-size:3rem;font-weight:800;line-height:1;width:64px;height:64px;border-radius:8px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);flex:none}
+.catletter.A{background:var(--trig);color:var(--trig-ink);border-color:var(--trig)}
+.catletter.B{background:var(--rev-soft);border-color:var(--rev)}
+.catletter.FI{font-size:1.6rem}
+.catlabel{font-weight:700;margin:0}
+.catwhy{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.small{font-size:.88rem}
+.watch{margin:12px 0 0;padding:10px 12px;background:var(--rev-soft);border-radius:6px;font-size:.88rem}
+.watch p{margin:0 0 4px;font-weight:600}
+.watch ul{margin:0;padding-left:18px}
+.watch details.exl{margin-top:6px}
+.watch details.exl summary{cursor:pointer;font-weight:600}
+.watch details.exl p{margin:6px 0}
+.watch .cite{color:var(--muted)}
+.progress{font-size:.85rem;color:var(--muted);margin:14px 0 0}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+button.btn{font:inherit;font-weight:600;font-size:.92rem;border-radius:6px;padding:8px 14px;cursor:pointer;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink)}
+button.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.copybox{width:100%;margin-top:10px;font:inherit;font-size:.8rem;min-height:140px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px}
+.toast{font-size:.85rem;color:var(--accent);margin-top:8px;min-height:1.2em}
+details.load{margin-top:12px;font-size:.88rem}
+details.load summary{cursor:pointer;font-weight:600}
+details.load p{margin:6px 0;color:var(--muted)}
+
+section.actions{margin-top:40px}
+section.actions > h2{font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;letter-spacing:-0.01em;margin:0 0 6px}
+section.actions > p{color:var(--muted);margin:0 0 20px;max-width:66ch}
+.cards{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:860px){.cards{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--line);border-radius:8px;padding:16px 18px}
+.card.trig{border-left-color:var(--trig)}
+.card.review{border-left-color:var(--rev)}
+.card.clear{border-left-color:var(--clear)}
+.card h3{margin:0;font-size:1.05rem;line-height:1.3}
+.card h3 .psn{color:var(--accent);margin-right:6px}
+.chip{display:inline-block;font-size:.78rem;font-weight:700;border-radius:4px;padding:2px 8px;margin:8px 0 4px}
+.chip.trig{background:var(--trig);color:var(--trig-ink)}
+.chip.review{background:var(--rev-soft);color:var(--ink);border:1px solid var(--rev)}
+.chip.clear{background:var(--clear-soft);color:var(--ink)}
+.chip.open{border:1px dashed var(--line);color:var(--muted)}
+.card h4{font-size:.88rem;margin:12px 0 4px;color:var(--muted);font-weight:700}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:3px 0;max-width:70ch}
+.cite{color:var(--muted);font-size:.8rem}
+.india{margin-top:12px;font-size:.88rem;background:var(--bg);border-radius:6px;padding:8px 10px}
+.india b{font-weight:700}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;max-width:80ch}
+footer p{margin:0 0 6px}
+@media (prefers-reduced-motion:no-preference){.cell,.catletter{transition:background-color .25s,border-color .25s,color .25s}}
+@media print{aside{position:static;max-height:none}.btns,form,details.load{display:none}.layout{display:block}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Which IFC Performance Standards apply to this project?</h1>
+    <p class="lede">Answer what you know about the project. Each answer updates the screening panel and the conformance actions below. Mark anything you can’t confirm as Not sure, and it becomes an item to check. This is the first pass; copy the case for Claude to take it further.</p>
+  </header>
+
+  <div class="layout">
+    <form id="form" autocomplete="off"></form>
+    <aside>
+      <h2>Screening result</h2>
+      <div class="strip" id="strip"></div>
+      <div class="key">
+        <span><i style="background:var(--trig)"></i>Triggered</span>
+        <span><i style="background:var(--rev-soft);border:1px solid var(--rev)"></i>Needs review</span>
+        <span><i style="background:var(--clear-soft);border:1px solid var(--clear)"></i>Not triggered</span>
+        <span><i style="border:1px dashed var(--muted)"></i>Not screened</span>
+      </div>
+      <div class="cat" id="cat"></div>
+      <div id="warn"></div>
+      <p class="progress" id="progress"></p>
+      <div class="btns">
+        <button type="button" class="btn" id="copy">Copy summary</button>
+        <button type="button" class="btn" id="copyjson">Copy case for Claude</button>
+        <button type="button" class="btn ghost" id="jump">See actions</button>
+        <button type="button" class="btn ghost" id="reset">Clear answers</button>
+      </div>
+      <div class="toast" id="toast"></div>
+      <div id="copyfallback"></div>
+      <details class="load" id="loadbox">
+        <summary>Load a saved case</summary>
+        <p>Paste a case copied from this tool, then press Load.</p>
+        <textarea class="copybox" id="loadtext" aria-label="Case to load" spellcheck="false"></textarea>
+        <div class="btns"><button type="button" class="btn ghost" id="loadbtn">Load</button></div>
+      </details>
+      <div class="sr" role="status" aria-live="polite" id="live"></div>
+    </aside>
+  </div>
+
+  <section class="actions" id="actions">
+    <h2>What to do to conform</h2>
+    <p>For each standard: why it applies on your answers, what the project needs to put in place (with the paragraph of the Performance Standards it comes from), and what to confirm where the answer is not yet known.</p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <footer>
+    <p>A first-pass screening against the IFC Performance Standards on Environmental and Social Sustainability (2012). It shows where due diligence is needed; it does not replace an ESDD, ESIA or ESMS, and the category it suggests is provisional.</p>
+    <p>Standards, triggers and action wording follow the 2012 Performance Standards and the Guidance Notes (updated June 2021). The category, sector and sanity-check rules are EMC judgement. Indian law lines are general guidance: verify current texts.</p>
+    <p id="ver"></p>
+    <p>Environmental Management Centre (EMC) and Ekonnect Knowledge Foundation, Mumbai.</p>
+  </footer>
+</div>
+
+<script>
+/* @@DATA_START */
+var RULES = {"rule_set":"EMC IFC PS screening rules","version":"1.2.0","released":"2026-10-29","standard_basis":{"performance_standards":"IFC Performance Standards on Environmental and Social Sustainability, 1 January 2012 (in force)","guidance_notes":"2012 edition, updated 14 June 2021","revision_note":"IFC is reviewing its Sustainability Framework. Phase I dialogue runs to December 2026 and public consultation on draft proposals starts in January 2027. Nothing has been approved and no effective date is set. The 2012 Performance Standards remain in force; draft provisions are not applied.","sustainability_policy":"IFC Policy on Environmental and Social Sustainability, 1 January 2012 (paragraphs 19–44 used for the Exclusion List, due diligence, FIs and categories)","fi_guidance":"IFC Guidance Note on Financial Intermediaries, 29 September 2023 (replaces the Interpretation Note on FIs of November 2018)","category_basis":"The meaning of Categories A, B, C and FI-1 to FI-3 follows Sustainability Policy para 40 (and para 44 for FIs). The sector risk classes, the question-to-category rules, the sanity checks and the minimum-answers rule are EMC judgement: the Policy gives no sector list and no scoring rule.","cite_format":"PSn para x = Performance Standard n, paragraph x. GNn-m = Guidance Note n, note m. Sustainability Policy para x. FI Guidance Note para x. fn = footnote. Question basis: PS = follows Performance Standard text; EMC = EMC practice or judgement."},"owner":"Environmental Management Centre (EMC), Mumbai","answer_values":["yes","no","unsure"],"status_values":{"trig":"Triggered","review":"Needs review","clear":"Not triggered","open":"Not screened"},"status_rule":{"description":"Per standard: any Yes triggers; every question answered No clears; no answers at all is Not screened; anything else (Not sure, or a mix of No and unanswered) is Needs review. PS1 is always triggered.","always_triggered":[1]},"standards":[{"ps":1,"name":"Assessment and management of environmental and social risks and impacts","short":"E&S management","sections":["Environmental and Social Assessment and Management System","Policy","Identification of Risks and Impacts","Management Programs","Organizational Capacity and Competency","Emergency Preparedness and Response","Monitoring and Review","Stakeholder Engagement","Informed Consultation and Participation","External Communications and Grievance Mechanisms","Ongoing Reporting to Affected Communities"],"base_actions":[{"text":"Adopt an environmental and social policy endorsed by senior management.","cite":"PS1 para 6"},{"text":"Identify risks and impacts through an assessment scaled to the project’s category.","cite":"PS1 paras 7–8, 19"},{"text":"Set up an ESMS: management programmes, organisational capacity and training, emergency preparedness, monitoring and review.","cite":"PS1 paras 13–24"},{"text":"Run stakeholder engagement and an external grievance mechanism, with disclosure of relevant information.","cite":"PS1 paras 25–36"},{"text":"Where gaps against the Performance Standards are found, agree an Environmental and Social Action Plan (ESAP) with the investor; IFC makes it a condition of investment and expects the requirements to be met within a reasonable period. Category C projects often have no ESAP.","cite":"PS1 para 16; Sustainability Policy paras 22, 28 and fn 10"}],"documents":["E&S policy","ESIA or focused E&S assessment","ESMP","ESMS manual","Stakeholder Engagement Plan","Grievance mechanism procedure","Emergency response plan","Monitoring and reporting procedure"],"note_if_clear":null,"category_actions":{"A":[{"text":"Commission a full ESIA prepared by competent professionals, with external experts for significant or technically complex issues, and run informed consultation and participation with affected communities. Where the impacts on communities are significant (or there are adverse impacts on Indigenous Peoples), IFC as investor judges whether this leads to Broad Community Support.","cite":"PS1 paras 19, 30–31; Sustainability Policy para 30"}],"B":[{"text":"Commission a focused E&S assessment and an Environmental and Social Management Plan (ESMP).","cite":"PS1 paras 7, 14–16"}],"FI":[{"text":"Develop and operate an FI-level ESMS that fits the risk of the portfolio, incorporating the relevant principles of PS1: E&S policy, organisational capacity, risk identification and due diligence of each transaction, management programmes, monitoring and review, an external communications mechanism and emergency preparedness. FI-3 clients need only a simple screening procedure.","cite":"Sustainability Policy para 35; FI Guidance Note paras 6, 17, 23 and fn 20"},{"text":"Screen every sub-project against the IFC Exclusion List and national law. FIs that serve only individual retail clients (mortgages, student loans) are generally not required to.","cite":"Sustainability Policy para 35; FI Guidance Note paras 7, 34 and fn 8, 10, 31"},{"text":"Apply the relevant parts of PS2 to the FI’s own employees, and manage life and fire safety in premises open to the public. PS2 paras 7, 11, 12, 27, 28 and 29 are unlikely to apply to an FI.","cite":"Sustainability Policy para 35; FI Guidance Note para 18"},{"text":"For FI-1, and for FI-2 that supports Higher Risk Transactions, apply the relevant Performance Standards to those sub-projects. They are equity, project finance or corporate finance over 36 months for activities involving resettlement, impacts on Indigenous Peoples, significant environmental, community, biodiversity or heritage impacts, significant retrenchment, or significant occupational health and safety risk.","cite":"Sustainability Policy para 35; FI Guidance Note paras 9, 34–35"},{"text":"Confirm the scope of application: a specified end use of IFC funds covers that asset class only (and the same asset class when the FI also finances it from its own account); equity or general-purpose funding covers the whole portfolio originated from the date of IFC’s investment. The existing portfolio is not covered.","cite":"Sustainability Policy paras 36–37; FI Guidance Note paras 3–4 and fn 5"},{"text":"Where IFC is the investor: report E&S performance to IFC each year (not FI-3), publish a summary of the ESMS, and (FI-1 and FI-2) notify IFC promptly of serious incidents at borrowers or investees. Private equity funds also disclose the sub-projects supported with IFC funding other than Category C.","cite":"FI Guidance Note paras 52–54, 62–66"},{"text":"Expect restrictions beyond the Exclusion List, for example coal-related sub-projects where the use of proceeds is defined (and trade finance for thermal coal); for funds, coal investments are excluded up front or IFC opts out.","cite":"FI Guidance Note para 7 and fn 11"}]}},{"ps":2,"name":"Labour and working conditions","short":"Labour","sections":["Human Resources Policies and Procedures","Working Conditions and Terms of Employment","Workers' Organizations","Non-Discrimination and Equal Opportunity","Retrenchment","Grievance Mechanism","Child Labor","Forced Labor","Occupational Health and Safety","Workers Engaged by Third Parties","Supply Chain"],"base_actions":[{"text":"Adopt an HR policy and written terms of employment that meet national law and PS2.","cite":"PS2 paras 8–9"},{"text":"Ensure no child labour, forced labour or discrimination, and respect workers’ freedom of association where national law allows it.","cite":"PS2 paras 13–15, 21–22"},{"text":"Set up a worker grievance mechanism, extended to contractor workers where the contractor has none.","cite":"PS2 paras 20, 26"},{"text":"Run an occupational health and safety programme: hazard identification, training, PPE and incident reporting.","cite":"PS2 para 23"}],"documents":["HR policy and manual","OHS management plan","Worker grievance procedure","Contractor management procedure with PS2 clauses","Worker accommodation standards (if camps)","Retrenchment plan (if layoffs)","Supply chain labour risk review (if high risk)"],"note_if_clear":null},{"ps":3,"name":"Resource efficiency and pollution prevention","short":"Pollution","sections":["Resource Efficiency","Greenhouse Gases","Water Consumption","Pollution Prevention","Wastes","Hazardous Materials Management","Pesticide Use and Management"],"base_actions":[{"text":"Follow the World Bank Group EHS Guidelines (General and sector-specific), applying whichever is more stringent of the Guidelines and national standards.","cite":"PS3 para 5; PS overview paras 6–7"},{"text":"Adopt resource efficiency measures for energy, water and materials that are technically and financially feasible and cost-effective.","cite":"PS3 paras 4, 6"}],"documents":["Pollution prevention and waste management plan","Hazardous materials management plan","GHG quantification (if above 25,000 tCO2e/yr)","Water management plan","Integrated pest management plan (if pesticides)","Environmental monitoring programme"],"note_if_clear":null},{"ps":4,"name":"Community health, safety and security","short":"Community","sections":["Infrastructure and Equipment Design and Safety","Hazardous Materials Management and Safety","Ecosystem Services","Community Exposure to Disease","Emergency Preparedness and Response","Security Personnel"],"base_actions":[{"text":"Assess risks to community health, safety and security and include controls in the ESMS.","cite":"PS4 para 5"},{"text":"Share emergency response arrangements with affected communities and local authorities, and help them take part.","cite":"PS4 para 11; PS1 paras 20–21"}],"documents":["Community health, safety and security plan","Traffic management plan","Emergency response plan shared with communities","Security risk assessment and management plan","Labour influx management plan (communicable disease; GBV/SEA controls are lender practice)","Structural safety plan and external expert review (dams, tailings dams, ash ponds in high-risk locations)"],"note_if_clear":null},{"ps":5,"name":"Land acquisition and involuntary resettlement","short":"Land","sections":["Project Design","Compensation and Benefits for Displaced Persons","Community Engagement","Grievance Mechanism","Resettlement and Livelihood Restoration Planning and Implementation","Physical Displacement","Economic Displacement","Private Sector Responsibilities Under Government-Managed Resettlement"],"base_actions":[{"text":"Avoid or minimise displacement by considering alternative project designs and sites.","cite":"PS5 para 8"},{"text":"Compensate for lost assets at full replacement cost and restore livelihoods. People with no legal right or recognisable claim to the land are not paid for the land, but are offered resettlement with security of tenure and compensation for non-land assets owned before the cut-off date.","cite":"PS5 paras 9, 17, 22, 27"},{"text":"Set up a grievance mechanism for land issues early, before acquisition starts, and run a census with a published cut-off date.","cite":"PS5 paras 11–12, 23"}],"documents":["Land acquisition and legacy review","Census and socio-economic survey","Resettlement Action Plan (physical displacement)","Livelihood Restoration Plan (economic displacement)","Supplemental plan (government-led acquisition)","Completion audit"],"note_if_clear":null},{"ps":6,"name":"Biodiversity conservation and sustainable management of living natural resources","short":"Biodiversity","sections":["Modified Habitat","Natural Habitat","Critical Habitat","Legally Protected and Internationally Recognized Areas","Invasive Alien Species","Management of Ecosystem Services","Sustainable Management of Living Natural Resources","Supply Chain"],"base_actions":[{"text":"Establish a biodiversity baseline and assess impacts on habitats and ecosystem services.","cite":"PS6 paras 5–6"},{"text":"Apply the mitigation hierarchy: avoid, minimise, restore, then offset.","cite":"PS6 paras 7, 10"}],"documents":["Biodiversity baseline","Critical habitat assessment","Biodiversity Management Plan or Biodiversity Action Plan","Offset design (if residual impacts)","Ecosystem services review","Sustainable sourcing policy"],"note_if_clear":null},{"ps":7,"name":"Indigenous Peoples","short":"Indigenous Peoples","sections":["Avoidance of Adverse Impacts","Participation and Consent","Circumstances Requiring Free, Prior, and Informed Consent","Mitigation and Development Benefits","Private Sector Responsibilities Where Government is Responsible for Managing Indigenous Peoples Issues"],"base_actions":[{"text":"Engage affected Indigenous communities through culturally appropriate informed consultation and participation, involving their representative bodies.","cite":"PS7 paras 10–11"},{"text":"Prepare an Indigenous Peoples Plan, or a broader community development plan with separate components for Indigenous Peoples, with culturally appropriate benefits.","cite":"PS7 paras 9, 18–20"}],"documents":["Indigenous Peoples screening and social assessment","Indigenous Peoples Plan or Community Development Plan","Documented FPIC process and agreement (if required)"],"note_if_clear":null},{"ps":8,"name":"Cultural heritage","short":"Heritage","sections":["Protection of Cultural Heritage in Project Design and Execution","Chance Find Procedures","Consultation","Community Access","Removal of Replicable Cultural Heritage","Removal of Non-Replicable Cultural Heritage","Critical Cultural Heritage","Legally Protected Cultural Heritage Areas","Project's Use of Cultural Heritage"],"base_actions":[{"text":"Site and design the project to avoid significant adverse impacts on cultural heritage, and consult the communities who use it.","cite":"PS8 paras 8–9"},{"text":"Where there is a chance of impacts, retain competent professionals to identify and protect cultural heritage.","cite":"PS8 para 7"}],"documents":["Cultural heritage screening or impact assessment","Chance-find procedure (where heritage is expected to be found)","Heritage management plan (if needed)"],"note_if_clear":"Good practice, not a PS8 requirement unless heritage is expected to be found: where earthworks are planned, a chance-find clause in construction contracts is cheap insurance (PS8 para 8)."}],"sectors":[{"id":"solar","label":"Solar power","risk":"med","india_ec_exempt":true,"exposure":"PS3 low; PS5 and PS6 often decisive (land, grazing, birds, grassland); PS4 for lines and traffic","blocks_c_extra":[]},{"id":"wind","label":"Wind power","risk":"med","india_ec_exempt":true,"exposure":"PS6 birds and bats; PS5 land and access roads; PS4 blade throw, shadow flicker, traffic; PS7 where on tribal land","blocks_c_extra":[]},{"id":"hydro","label":"Hydropower or dams","risk":"high","india_ec_exempt":false,"exposure":"High across PS4 (dam safety), PS5, PS6 (river), PS7, PS8; cumulative impacts","blocks_c_extra":[]},{"id":"td","label":"Power transmission and distribution","risk":"med","india_ec_exempt":true,"exposure":"PS5 right-of-way; PS6 birds and forest corridors; PS4 line safety","blocks_c_extra":[],"policy_note":{"text":"If the project involves the retail distribution of water, electricity, piped gas or telecommunications to the general public under monopoly conditions, IFC encourages public disclosure of household tariffs and tariff adjustment mechanisms, service standards, investment obligations and any ongoing government support.","cite":"Sustainability Policy para 53"}},{"id":"thermal","label":"Thermal power","risk":"high","india_ec_exempt":false,"exposure":"PS3 high (emissions, GHG, ash, hazardous materials); PS4 including ash ponds","blocks_c_extra":[]},{"id":"transport","label":"Roads, rail or metro","risk":"med","india_ec_exempt":false,"exposure":"PS4 traffic and influx; PS5 right-of-way; PS6 for forest and coastal alignments","blocks_c_extra":[]},{"id":"ports","label":"Ports or airports","risk":"high","india_ec_exempt":false,"exposure":"PS5, PS6 coastal habitat, PS4 traffic and hazardous materials","blocks_c_extra":[]},{"id":"oilgas","label":"Oil, gas or pipelines","risk":"high","india_ec_exempt":false,"exposure":"PS3, PS4 (pipeline safety), PS5 right-of-way, PS6","blocks_c_extra":[],"policy_note":{"text":"Where IFC invests, it assesses the governance risks to the expected benefits of an oil, gas or mining project and does not support the project if the risks outweigh the benefits. The client must publicly disclose material project payments to the host government (royalties, taxes, profit sharing). The principal contract with government, and any significant amendments, must be public, with commercially sensitive information redacted; a published summary of key terms may be accepted instead.","cite":"Sustainability Policy paras 49–52"}},{"id":"mining","label":"Mining or quarrying","risk":"high","india_ec_exempt":false,"exposure":"High across PS3 to PS8; tailings safety; legacy land","blocks_c_extra":[],"policy_note":{"text":"Where IFC invests, it assesses the governance risks to the expected benefits of an oil, gas or mining project and does not support the project if the risks outweigh the benefits. The client must publicly disclose material project payments to the host government (royalties, taxes, profit sharing). The principal contract with government, and any significant amendments, must be public, with commercially sensitive information redacted; a published summary of key terms may be accepted instead.","cite":"Sustainability Policy paras 49–52"}},{"id":"heavy","label":"Heavy industry (cement, steel, chemicals)","risk":"high","india_ec_exempt":false,"exposure":"PS3 high; PS4 hazardous materials; PS2 OHS","blocks_c_extra":[]},{"id":"light","label":"Light manufacturing","risk":"med","india_ec_exempt":false,"exposure":"PS2 and PS3 moderate; PS2 supply chain in textiles and electronics","blocks_c_extra":[]},{"id":"agri","label":"Agribusiness or food processing","risk":"med","india_ec_exempt":false,"exposure":"PS2 seasonal and child labour; PS3 pesticides; PS6 sourcing","blocks_c_extra":[]},{"id":"forestry","label":"Forestry or plantations","risk":"high","india_ec_exempt":false,"exposure":"PS6 habitat conversion; PS7 customary use; PS2","blocks_c_extra":[]},{"id":"realestate","label":"Real estate, hospitality or commercial buildings","risk":"med","india_ec_exempt":false,"exposure":"PS2 construction labour; PS4 life and fire safety; PS5 if land assembled","blocks_c_extra":[]},{"id":"water","label":"Water, sanitation or waste","risk":"med","india_ec_exempt":false,"exposure":"PS3 effluent and sludge; PS4; PS5 for pipelines and plants","blocks_c_extra":[],"policy_note":{"text":"If the project involves the retail distribution of water, electricity, piped gas or telecommunications to the general public under monopoly conditions, IFC encourages public disclosure of household tariffs and tariff adjustment mechanisms, service standards, investment obligations and any ongoing government support.","cite":"Sustainability Policy para 53"}},{"id":"social","label":"Healthcare or education","risk":"low","india_ec_exempt":false,"exposure":"PS1 and PS2; healthcare adds PS3 medical waste (so pollution answers block Category C here)","blocks_c_extra":["p3_pollution"]},{"id":"services","label":"Services, IT or retail","risk":"low","india_ec_exempt":false,"exposure":"Usually PS1 and PS2 only","blocks_c_extra":[]},{"id":"fi","label":"Financial intermediary (bank, NBFC, fund, insurer)","risk":"fi","india_ec_exempt":false,"exposure":"Apply through the FI’s ESMS to sub-projects","blocks_c_extra":[]}],"stages":[{"id":"greenfield","label":"Greenfield (new site)"},{"id":"expansion","label":"Expansion of an existing site"},{"id":"existing","label":"Existing operations"},{"id":"acquisition","label":"Acquisition of a company"}],"questions":[{"id":"p2_workers","ps":2,"text":"Will the project employ workers, directly or through contractors, during construction or operation?","section":"Human Resources Policies and Procedures","cite":["PS2 paras 5–7"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"The project has a workforce, direct or contracted.","if_open_confirm":"Confirm workforce numbers for construction and operation.","owner":"developer","actions_if_yes":[]},{"id":"p2_contract","ps":2,"text":"Will a large share of the work be done by contractors, subcontractors or migrant workers?","section":"Workers Engaged by Third Parties","cite":["PS2 paras 11, 24–26","GN2-71 to GN2-73"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"A large contracted or migrant workforce.","if_open_confirm":"Get the contracting strategy and expected contractor headcount.","owner":"developer / EPC contractor","actions_if_yes":[{"text":"Write PS2 requirements into contracts and monitor contractors’ labour and safety performance.","cite":"PS2 paras 24–26"},{"text":"Check recruitment fees, wage payment and retention of identity documents for migrant workers; workers must keep their own passports and documents.","cite":"PS2 para 11; GN2-71 to GN2-73"}]},{"id":"p2_camps","ps":2,"text":"Will workers live in camps or project-provided accommodation?","section":"Working Conditions and Terms of Employment","cite":["PS2 para 12","GN2-32"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Worker accommodation will be provided.","if_open_confirm":"Ask whether labour camps are planned, and for how many workers.","owner":"EPC contractor","actions_if_yes":[{"text":"Build and run camps to the IFC/EBRD Workers’ Accommodation guidance: space, sanitation, water, fire safety and privacy; monitor conditions.","cite":"PS2 para 12; GN2-32"}]},{"id":"p2_supply","ps":2,"text":"Do primary suppliers come from sectors with known forced labour, child labour or serious safety risks (for example polysilicon, cotton, bricks, mica, seafood)?","section":"Supply Chain","cite":["PS2 paras 27–29"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"The primary supply chain carries labour risk.","if_open_confirm":"List the main materials and where primary suppliers source them.","owner":"procurement","actions_if_yes":[{"text":"Map primary suppliers and review the risk of child labour, forced labour and serious safety issues; require remediation, or shift to other suppliers over time, where it is found.","cite":"PS2 paras 27–29"}]},{"id":"p2_retrench","ps":2,"text":"Are layoffs or collective retrenchment planned, for example after an acquisition or restructuring?","section":"Retrenchment","cite":["PS2 paras 18–19"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"Collective retrenchment is planned.","if_open_confirm":"Check restructuring plans and post-acquisition staffing.","owner":"company HR","actions_if_yes":[{"text":"Prepare a retrenchment plan: alternatives analysis, consultation with workers and their organisations, notice and severance, and non-discriminatory selection.","cite":"PS2 paras 18–19"}]},{"id":"p3_pollution","ps":3,"text":"Will the project release air emissions, wastewater or waste, or use or store hazardous materials?","section":"Pollution Prevention","cite":["PS3 paras 10–13"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"Emissions, effluent, waste or hazardous materials are involved.","if_open_confirm":"Get a process description listing emissions, effluents and wastes.","owner":"developer / process engineer","actions_if_yes":[{"text":"Set up waste and hazardous materials management, and monitor emissions and effluents against permit and EHS Guideline limits.","cite":"PS3 paras 10–13"}]},{"id":"p3_water","ps":3,"text":"Will the project draw significant amounts of water, or is it in a water-stressed area?","section":"Water Consumption","cite":["PS3 para 9"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Significant water use or a water-stressed location.","if_open_confirm":"Find the water source, expected demand and local water stress.","owner":"developer","actions_if_yes":[{"text":"Assess water availability and effects on other users; adopt water efficiency and reuse measures.","cite":"PS3 para 9"}]},{"id":"p3_ghg","ps":3,"text":"Are direct emissions plus emissions from purchased energy likely to exceed 25,000 tonnes CO₂-equivalent a year?","section":"Greenhouse Gases","cite":["PS3 paras 7–8"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"GHG emissions above 25,000 tCO₂e a year.","if_open_confirm":"Estimate annual fuel and electricity use to test the 25,000 tCO₂e threshold.","owner":"developer / energy consultant","actions_if_yes":[{"text":"Quantify direct emissions and emissions from purchased energy annually, and consider cost-effective options to reduce them.","cite":"PS3 paras 7–8"}]},{"id":"p3_pest","ps":3,"text":"Will pesticides or other agrochemicals be used?","section":"Pesticide Use and Management","cite":["PS3 paras 14–17"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Pesticides or agrochemicals will be used.","if_open_confirm":"Check pest and vegetation control practices.","owner":"operations","actions_if_yes":[{"text":"Adopt integrated pest management. Do not purchase, store, use, manufacture or trade WHO Class Ia or Ib pesticides; Class II only with appropriate controls and trained handlers. Pesticides and herbicides that are illegal or internationally banned are on the IFC Exclusion List.","cite":"PS3 paras 14–17; IFC Exclusion List"}]},{"id":"p4_near","ps":4,"text":"Do communities live close to the site or along its access roads?","section":"Community Exposure to Disease","cite":["PS4 paras 5, 9–10"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"Communities live near the site or its access routes.","if_open_confirm":"Map settlements around the site and along access routes.","owner":"site team","actions_if_yes":[{"text":"Assess community exposure to dust, noise, water contamination and disease, and set controls.","cite":"PS4 paras 5, 9–10"}]},{"id":"p4_traffic","ps":4,"text":"Will heavy vehicles use public roads, or will hazardous materials be transported?","section":"Hazardous Materials Management and Safety","cite":["PS4 paras 6–7"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Heavy traffic or hazardous materials on public roads.","if_open_confirm":"Get the construction logistics plan and expected vehicle movements.","owner":"EPC contractor","actions_if_yes":[{"text":"Prepare a traffic and road safety plan; train drivers and manage routes near schools and villages; control the safety of hazardous materials deliveries.","cite":"PS4 paras 6–7"}]},{"id":"p4_infra","ps":4,"text":"Does the project include structures or buildings the public will use, or whose failure could endanger the public (tanks, pipelines, transmission lines, bridges, tall buildings)? Dams, tailings dams and ash ponds are asked separately.","section":"Infrastructure and Equipment Design and Safety","cite":["PS4 para 6"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"Structures that could endanger the public if they fail, or that the public will use.","if_open_confirm":"Identify structural elements whose failure could affect the public.","owner":"design engineer","actions_if_yes":[{"text":"Have competent professionals design and build structures to good international industry practice, certified or approved by competent authorities or professionals; consider fire, life safety and universal access for buildings the public uses.","cite":"PS4 para 6"},{"text":"Prepare emergency response plans jointly with local authorities and communities.","cite":"PS4 para 11"}]},{"id":"p4_dam","ps":4,"text":"Does the project include a dam, tailings dam or ash pond in a location where its failure could threaten communities (settlements downstream, steep terrain, seismic zone)?","section":"Infrastructure and Equipment Design and Safety","cite":["PS4 para 6"],"basis":"PS","a_signal":true,"blocks_c":true,"if_yes_reason":"A dam, tailings dam or ash pond whose failure could threaten communities.","if_open_confirm":"Ask the design engineer whether any dam, tailings dam or ash pond is planned and who lives downstream.","owner":"design engineer","actions_if_yes":[{"text":"Engage external experts, separate from the designers and builders, to review the structure from early development through design, construction, operation and decommissioning.","cite":"PS4 para 6"}]},{"id":"p4_security","ps":4,"text":"Will private security guards or public security forces protect the site?","section":"Security Personnel","cite":["PS4 paras 12–14"],"basis":"PS","a_signal":false,"blocks_c":false,"if_yes_reason":"Security personnel will be used.","if_open_confirm":"Ask whether guards or police will be deployed at site.","owner":"developer","actions_if_yes":[{"text":"Assess security risks; make reasonable inquiries that guards are not implicated in past abuses; train them in use of force and conduct toward workers and communities; allow force only for preventive and defensive purposes in proportion to the threat. For public security forces, assess and document the risks. Provide a grievance mechanism for communities. (The Voluntary Principles on Security and Human Rights are a common benchmark; the Performance Standard text does not name them.)","cite":"PS4 paras 12–14"}]},{"id":"p4_influx","ps":4,"text":"Will many outside workers arrive compared with the local population?","section":"Community Exposure to Disease","cite":["PS4 para 10","GN4-18 to GN4-20"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"A large labour influx is expected.","if_open_confirm":"Compare peak workforce with the population of nearby villages.","owner":"social specialist","actions_if_yes":[{"text":"Manage the communicable disease risk that comes with labour influx (health screening, awareness programmes with host communities).","cite":"PS4 para 10; GN4-18 to GN4-20"},{"text":"Lender practice, not PS4 text: add a worker code of conduct, a community grievance channel, and controls on gender-based violence and sexual exploitation.","cite":"EMC practice"}]},{"id":"p5_land","ps":5,"text":"Does the project need land that is not already built-up premises leased on the open market: new land, a purchase, a long lease, a right-of-way or an easement?","section":"Project Design","cite":["PS5 paras 5–6"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"New land, right-of-way or lease is needed. PS5 applies unless every parcel is a genuinely voluntary transaction (PS5 para 6), which has to be shown.","if_open_confirm":"Get the land schedule: area, ownership and how each parcel is being secured.","owner":"land records / developer","actions_if_yes":[{"text":"Show, parcel by parcel, that each transaction was voluntary (the seller was not obliged to sell and the buyer could not have used expropriation). Where it was not, or where people used the land, PS5 applies in full.","cite":"PS5 paras 5–6"}]},{"id":"p5_users","ps":5,"text":"Do people live on, farm, graze or collect resources from that land, including government or ‘vacant’ land?","section":"Economic Displacement","cite":["PS5 paras 5, 17, 23","PS5 fn 8"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"People use the land, formally or informally.","if_open_confirm":"Commission a land-use and livelihood survey. ‘Vacant’ government land does not by itself rule out PS5.","owner":"social specialist","actions_if_yes":[{"text":"Run a census and socio-economic survey with a published cut-off date, covering informal users. Those with no legal claim are not paid for the land but receive compensation for non-land assets and help to restore livelihoods.","cite":"PS5 paras 12, 17, 22–23"},{"text":"Prepare a Livelihood Restoration Plan for economic displacement.","cite":"PS5 paras 25–29"}]},{"id":"p5_relocate","ps":5,"text":"Will any households have to move their homes or structures?","section":"Physical Displacement","cite":["PS5 paras 18–22"],"basis":"PS","a_signal":true,"blocks_c":true,"if_yes_reason":"Households will be physically displaced.","if_open_confirm":"Check whether any dwellings or structures fall within the footprint or right-of-way.","owner":"social specialist","actions_if_yes":[{"text":"Prepare a Resettlement Action Plan with replacement housing or cash at full replacement cost, security of tenure, and transition support.","cite":"PS5 paras 19–22"}]},{"id":"p5_scale","ps":5,"text":"Is the loss of land or land access likely to affect many people, whole communities, or the main livelihood of many users?","section":"Economic Displacement","cite":["PS5 paras 25–29"],"basis":"EMC","a_signal":true,"blocks_c":true,"if_yes_reason":"Land loss or restricted access could affect many people or their main livelihoods.","if_open_confirm":"Get the land-use survey or at least a count of households that farm, graze or collect resources on the land.","owner":"social specialist","actions_if_yes":[{"text":"Size the livelihood impacts early and treat the Livelihood Restoration Plan as a major workstream, with independent monitoring and a completion audit.","cite":"PS5 paras 14–15, 25–29"}]},{"id":"p5_expro","ps":5,"text":"Is the government acquiring the land, or could it expropriate if negotiations fail?","section":"Private Sector Responsibilities Under Government-Managed Resettlement","cite":["PS5 paras 5, 30–31"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Government acquisition or expropriation is involved.","if_open_confirm":"Check whether land is acquired under acquisition law, or by negotiation backed by expropriation powers.","owner":"land records / legal","actions_if_yes":[{"text":"Treat the acquisition as involuntary; identify the government’s resettlement measures and, where they fall short of PS5, prepare a supplemental plan with top-up compensation where needed.","cite":"PS5 paras 30–31"}]},{"id":"p5_access","ps":5,"text":"Will people lose access to grazing land, forests, fishing grounds or other natural resources?","section":"Economic Displacement","cite":["PS5 para 5"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Access to land or natural resources will be restricted.","if_open_confirm":"Identify community use of resources in and around the footprint.","owner":"social specialist","actions_if_yes":[{"text":"Agree measures for access restriction and alternative livelihoods with the affected users.","cite":"PS5 paras 5, 25–29"}]},{"id":"p5_legacy","ps":5,"text":"Was land for this project acquired earlier by the government or a previous owner?","section":"Private Sector Responsibilities Under Government-Managed Resettlement","cite":["PS1 para 9","PS5 paras 30–31"],"basis":"EMC","a_signal":false,"blocks_c":true,"if_yes_reason":"Land was acquired earlier by a third party.","if_open_confirm":"Get records of earlier acquisition, compensation paid and outstanding grievances.","owner":"land records / legal","actions_if_yes":[{"text":"Carry out a legacy land audit and agree a corrective action plan for any gaps against PS5. (Lenders expect this because the project inherits third-party risks; PS1 requires the client to address them as far as it can.)","cite":"PS1 para 9; PS5 paras 30–31"}]},{"id":"p6_protected","ps":6,"text":"Is the site within or near a legally protected area or an internationally recognised area (UNESCO Natural World Heritage Site, Man and the Biosphere reserve, Key Biodiversity Area, Ramsar wetland), or an eco-sensitive zone? About 10 km is a screening distance, not a PS rule.","section":"Legally Protected and Internationally Recognized Areas","cite":["PS6 para 20 and fn 17"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Near a protected or internationally recognised area.","if_open_confirm":"Run an IBAT or equivalent proximity screen.","owner":"E&S consultant (IBAT screen)","actions_if_yes":[{"text":"Demonstrate the project is legally permitted, follow the area’s management plan, consult its managers and communities, and add programmes that support the area’s conservation aims.","cite":"PS6 para 20"}]},{"id":"p6_natural","ps":6,"text":"Will the project clear or alter natural habitat (forest, grassland, wetland, river, mangrove, coast)?","section":"Natural Habitat","cite":["PS6 paras 13–15"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Natural habitat will be converted or altered.","if_open_confirm":"Commission a habitat map of the footprint.","owner":"specialist ecologist","actions_if_yes":[{"text":"Do not significantly convert or degrade natural habitat unless the conditions in para 14 are met; design mitigation for no net loss of biodiversity.","cite":"PS6 paras 14–15"}]},{"id":"p6_species","ps":6,"text":"Could the site hold critical habitat: habitat that matters for Critically Endangered or Endangered species, endemic or restricted-range species, large concentrations of migratory or congregatory species (flyways, stopovers), or highly threatened ecosystems? Examples: Great Indian Bustard, vultures, elephant corridors.","section":"Critical Habitat","cite":["PS6 paras 16–19"],"basis":"PS","a_signal":true,"blocks_c":true,"if_yes_reason":"The site may hold critical habitat (threatened, endemic or migratory species).","if_open_confirm":"Ask a specialist ecologist for a species presence check that looks beyond notified protected areas.","owner":"specialist ecologist","actions_if_yes":[{"text":"Carry out a Critical Habitat Assessment; the habitat often extends beyond notified boundaries.","cite":"PS6 para 16"},{"text":"Where critical habitat is confirmed, show there is no viable alternative on non-critical habitat, no measurable adverse impact on the qualifying biodiversity values, no net reduction of any Critically Endangered or Endangered species population, and a long-term monitoring programme; then describe the mitigation in a Biodiversity Action Plan designed for net gains.","cite":"PS6 paras 17–18"}]},{"id":"p6_living","ps":6,"text":"Does the project produce or buy living natural resources (crops, timber, palm oil, fish, aquaculture)?","section":"Sustainable Management of Living Natural Resources","cite":["PS6 paras 26–30"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Production or sourcing of living natural resources.","if_open_confirm":"Check whether the project produces or buys agricultural, forestry or fishery products.","owner":"procurement","actions_if_yes":[{"text":"Apply credible sustainability standards to production, and check primary suppliers are not converting natural or critical habitat.","cite":"PS6 paras 26–30"}]},{"id":"p6_services","ps":6,"text":"Do local communities depend on ecosystems the project could affect (water, fuelwood, fisheries, flood protection)?","section":"Management of Ecosystem Services","cite":["PS6 paras 24–25","PS4 para 8"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Communities depend on ecosystem services the project could affect.","if_open_confirm":"Identify ecosystem services used by nearby communities.","owner":"social specialist","actions_if_yes":[{"text":"Assess priority ecosystem services and maintain their value and function for affected communities.","cite":"PS6 paras 24–25"}]},{"id":"p7_present","ps":7,"text":"Are Indigenous Peoples present in or using the project area (in India, Scheduled Tribes or Adivasi communities, or a Fifth or Sixth Schedule area)?","section":"Avoidance of Adverse Impacts","cite":["PS7 paras 4–8"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Indigenous Peoples are present in the area of influence.","if_open_confirm":"Check the Scheduled Area status of affected villages and census data on Scheduled Tribe population.","owner":"social specialist","actions_if_yes":[{"text":"Screen and assess impacts on Indigenous Peoples through a social assessment by qualified specialists; take advice on whether a group counts as Indigenous Peoples for PS7.","cite":"PS7 paras 7–8"}]},{"id":"p7_fpic","ps":7,"text":"Will the project be on, or take natural resources from, land that Indigenous Peoples traditionally own or customarily use; relocate them from such land; or significantly affect cultural heritage that is critical to them?","section":"Circumstances Requiring Free, Prior, and Informed Consent","cite":["PS7 paras 12–16"],"basis":"PS","a_signal":true,"blocks_c":true,"if_yes_reason":"Circumstances that require Free, Prior and Informed Consent.","if_open_confirm":"Check customary claims, forest rights titles and community use of the footprint.","owner":"social specialist","actions_if_yes":[{"text":"Obtain and document Free, Prior and Informed Consent through good-faith negotiation with the affected communities, supported by an independent expert as needed. IFC as investor reviews the consent process in depth.","cite":"PS7 paras 12–17; Sustainability Policy para 31"}]},{"id":"p8_known","ps":8,"text":"Are there known heritage sites near the footprint (protected monuments, temples, sacred groves, graves, shrines)?","section":"Protection of Cultural Heritage in Project Design and Execution","cite":["PS8 paras 6–10"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Known cultural heritage near the site.","if_open_confirm":"Check national and state protected monument lists, and ask communities about sacred places.","owner":"heritage specialist / site team","actions_if_yes":[{"text":"Retain competent professionals, consult the communities that use the site, and keep community access to it.","cite":"PS8 paras 7, 9–10"}]},{"id":"p8_critical","ps":8,"text":"Could the project significantly damage or remove cultural heritage that cannot be replaced, or that is internationally or nationally important (a World Heritage property, an ancient monument, a major sacred site)?","section":"Critical Cultural Heritage","cite":["PS8 paras 12–15"],"basis":"PS","a_signal":true,"blocks_c":true,"if_yes_reason":"Critical cultural heritage could be significantly affected.","if_open_confirm":"Ask a heritage specialist whether any footprint or access route touches a nationally or internationally important heritage site.","owner":"heritage specialist","actions_if_yes":[{"text":"Do not remove, significantly alter or damage critical cultural heritage. Where that is unavoidable in exceptional circumstances, run informed consultation and participation with a good-faith negotiation and a documented outcome, and retain external experts.","cite":"PS8 paras 13–14"}]},{"id":"p8_dig","ps":8,"text":"Will there be significant excavation or earthworks in an area where cultural heritage is likely to be found?","section":"Chance Find Procedures","cite":["PS8 paras 7–8"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Ground disturbance in an area where cultural heritage is expected to be found.","if_open_confirm":"Get the earthworks plan and an archaeological potential screen.","owner":"heritage specialist","actions_if_yes":[{"text":"Have qualified specialists screen archaeological potential before earthworks start, and put a chance-find procedure into the ESMS: work stops at a find until competent professionals assess it.","cite":"PS8 paras 7–8"}]},{"id":"p8_use","ps":8,"text":"Will the project use cultural heritage or traditional knowledge for commercial purposes?","section":"Project’s Use of Cultural Heritage","cite":["PS8 para 16","PS7 para 17"],"basis":"PS","a_signal":false,"blocks_c":true,"if_yes_reason":"Commercial use of cultural heritage.","if_open_confirm":"Check whether heritage sites or traditional knowledge are part of the business model.","owner":"developer","actions_if_yes":[{"text":"Inform the communities of their rights, the scope of the commercial use and its consequences; do not proceed without informed consultation and participation (good-faith negotiation, documented outcome) and fair, equitable benefit sharing. For Indigenous Peoples’ heritage, Free, Prior and Informed Consent applies and PS7 governs.","cite":"PS8 para 16; PS7 para 17"}]}],"category_rules":{"description":"Evaluated in order; the first rule that matches wins. The category is provisional. The meaning of each category follows the IFC Sustainability Policy (2012) paragraphs 40–44. The rules that turn checklist answers into a category are EMC judgement: the Policy defines the categories in words and does not prescribe them.","min_informative_answers":10,"order":[{"id":"fi","when":{"sector_risk":"fi"},"category":"FI","label":"Financial intermediary","why":"Investment through a financial intermediary. IFC sets FI-1, FI-2 or FI-3 from the exposure of the portfolio (type, size, sector, tenor), which this checklist does not collect (Sustainability Policy paras 40, 44). The FI applies the Exclusion List and national law to sub-projects and runs an ESMS that fits the risk of its portfolio. To screen a sub-project, answer the questions for a typical higher-risk one: the standards then show what it would trigger. PS2 also applies to the FI’s own staff (FI Guidance Note para 18)."},{"id":"A","when":{"any_a_signal":true},"category":"A","label":"Provisional Category A","why":"Potentially significant adverse risks or impacts that are diverse, irreversible or unprecedented (Sustainability Policy para 40). Expect a full ESIA."},{"id":"none","when":{"no_sector":true,"or_informative_answers_below_min":true},"category":"-","label":"Not yet categorised","why":"Choose a sector and answer at least 10 questions with Yes or No to get a provisional category."},{"id":"C","when":{"sector_risk":"low","no_blocks_c_answered_yes":true},"category":"C","label":"Provisional Category C","why":"Minimal or no adverse risks or impacts on current answers (Sustainability Policy para 40).","note_if_any_open":"Questions that could move this to B are still open or marked Not sure."},{"id":"B","when":"default","category":"B","label":"Provisional Category B","why":"Potentially limited adverse risks or impacts: few in number, generally site-specific, largely reversible and readily addressed through mitigation (Sustainability Policy para 40). A focused assessment and ESMP are expected."}],"a_signals":[{"id":"question_a_signal","type":"question_flag","description":"Every question with a_signal true adds its if_yes_reason when answered Yes."},{"id":"high_risk_greenfield","type":"sector_stage","sector_risk":"high","stage":"greenfield","reason":"High-risk sector on a greenfield site.","basis":"EMC judgement. Sustainability Policy paras 42–43 require the inherent risk of the sector and the setting to be weighed when the footprint is not yet known; they do not name sectors or say a greenfield site is Category A."},{"id":"habitat_near_protected","type":"all_answers","answers":{"p6_natural":"yes","p6_protected":"yes"},"reason":"Natural habitat altered near a protected or internationally recognised area."},{"id":"ip_heritage_commercial","type":"all_answers","answers":{"p7_present":"yes","p8_use":"yes"},"reason":"Commercial use of Indigenous Peoples’ cultural heritage requires Free, Prior and Informed Consent (PS7 para 17)."}],"watch":{"description":"For B or C: every question with a_signal true that is not answered No becomes a ‘could move to A’ item, using its if_open_confirm text."}},"sanity_checks":[{"id":"power_land","sector_in":["solar","wind","td"],"answers":{"p5_land":"no"},"message":"Solar, wind and transmission projects nearly always need land or a right-of-way. Check the No on the land question."},{"id":"hydro_dam","sector_in":["hydro"],"answers":{"p4_dam":"no"},"message":"Hydropower normally includes a dam or weir. Check the No on the dam question."},{"id":"hydro_land","sector_in":["hydro","mining","ports","transport","oilgas"],"answers":{"p5_land":"no"},"message":"This type of project nearly always needs land or a right-of-way. Check the No on the land question."},{"id":"thermal_pollution","sector_in":["thermal","heavy","mining","oilgas","water","light","agri"],"answers":{"p3_pollution":"no"},"message":"This sector releases emissions, effluent or waste. Check the No on the pollution question."},{"id":"thermal_ghg","sector_in":["thermal"],"answers":{"p3_ghg":"no"},"message":"Thermal power is very likely to exceed 25,000 tCO₂e a year. Check the No on the GHG question."},{"id":"thermal_ash","sector_in":["thermal"],"answers":{"p4_dam":"no"},"message":"Coal-based thermal plants normally have an ash pond. Check the No on the dam, tailings or ash pond question."},{"id":"mining_tailings","sector_in":["mining"],"answers":{"p4_dam":"no"},"message":"Most mines have a tailings or waste storage facility. Check the No on the dam, tailings or ash pond question."},{"id":"mining_habitat","sector_in":["mining","forestry","hydro"],"answers":{"p6_natural":"no"},"message":"Mines, plantations and dams almost always alter natural habitat. Check the No on the habitat question."},{"id":"agri_living","sector_in":["agri","forestry"],"answers":{"p6_living":"no"},"message":"Agribusiness and forestry produce or buy living natural resources. Check the No on that question."},{"id":"agri_pest","sector_in":["agri"],"answers":{"p3_pest":"no"},"message":"Most agricultural operations use some agrochemicals. Check the No on the pesticide question."},{"id":"workforce_all","sector_in":["solar","wind","hydro","td","thermal","transport","ports","oilgas","mining","heavy","light","agri","forestry","realestate","water","social","services"],"answers":{"p2_workers":"no"},"message":"Every project has some workforce. Check the No on the workforce question."}],"exclusion_list":{"name":"IFC Exclusion List (2007), as amended 8 December 2025","source":"https://www.ifc.org/exclusionlist (text supplied by EMC, 29 October 2026). Applies to transactions and engagements mandated after 31 December 2025.","cite":"Sustainability Policy para 19; IFC Exclusion List","prompt":"Before relying on this result, confirm the project does not involve an activity on the IFC Exclusion List. IFC does not finance such projects, whatever the Performance Standards result.","fi_prompt":"For a financial intermediary the list applies to the sub-projects it finances, with extra exclusions for FIs (forced and harmful child labour; commercial logging in primary tropical moist forest; wood and forestry products not from sustainably managed forests). Microfinance and trade finance have shorter lists.","intro":"IFC does not finance the following projects:","items":[{"text":"Production or trade in any product or activity deemed illegal under host country laws or regulations or international conventions and agreements, or subject to international bans, such as pharmaceuticals, pesticides/herbicides, ozone depleting substances, PCB’s, wildlife or products regulated under CITES."},{"text":"Production or trade in weapons and munitions.","footnote":"1"},{"text":"Production or trade in alcoholic beverages (excluding beer and wine).","footnote":"1"},{"text":"Production or trade in tobacco.","footnote":"1"},{"text":"Gambling, casinos and equivalent enterprises.","footnote":"1"},{"text":"Production or trade in unbonded asbestos fibers. This does not apply to purchase and use of bonded asbestos cement sheeting where the asbestos content is less than 20%."},{"text":"Drift net fishing in the marine environment using nets in excess of 2.5 km. in length."}],"footnotes":{"1":"This does not apply to project sponsors who are not substantially involved in these activities. “Not substantially involved” means that the activity concerned is ancillary to a project sponsor’s primary operations.","2":"Forced labor means all work or service, not voluntarily performed, that is extracted from an individual under threat of force or penalty.","3":"Harmful child labor means the employment of children that is economically exploitive, or is likely to be hazardous to, or to interfere with, the child’s education, or to be harmful to the child’s health, or physical, mental, spiritual, moral, or social development."},"reasonableness_test":"A reasonableness test will be applied when the activities of the project company would have a significant development impact but circumstances of the country require adjustment to the Exclusion List.","fi_additional":{"general":{"label":"All financial intermediaries, except microfinance and trade finance below, apply these in addition to the Exclusion List","items":[{"text":"Production or activities involving harmful or exploitative forms of forced labor/harmful child labor.","footnote":"2, 3"},{"text":"Commercial logging operations for use in primary tropical moist forest."},{"text":"Production or trade in wood or other forestry products other than from sustainably managed forests."}]},"microfinance":{"label":"When investing in microfinance activities, FIs apply these in addition to the Exclusion List","items":[{"text":"Production or activities involving harmful or exploitative forms of forced labor/harmful child labor.","footnote":"2, 3"},{"text":"Production, trade, storage, or transport of significant volumes of hazardous chemicals, or commercial scale usage of hazardous chemicals. Hazardous chemicals include gasoline, kerosene, and other petroleum products."},{"text":"Production or activities that impinge on the lands owned, or claimed under adjudication, by Indigenous Peoples, without full documented consent of such peoples."}]},"trade_finance":{"label":"For trade finance projects, FIs apply this in addition to the Exclusion List","items":[{"text":"Production or activities involving harmful or exploitative forms of forced labor/harmful child labor.","footnote":"2, 3"}]}},"fi_substantially_involved":"For an FI, “substantially involved” (footnote 1) is generally taken to mean a cumulative portfolio exposure above 5 percent to investees or borrowers that earn more than 20 percent of their revenues from an excluded activity (for multi-seller e-commerce platforms, a gross merchandise value indicator replaces the revenue test). The 5 percent threshold would not generally apply to private equity funds. FIs that serve only individual retail clients (mortgages, student loans) are generally not required to apply the Exclusion List.","fi_cite":"FI Guidance Note para 7 and fn 8–10, 31","amendment_note":"The list was amended on 8 December 2025 to remove ‘production or trade in radioactive materials’. An older copy that still lists radioactive materials is out of date.","other_restrictions_note":"IFC may also restrict activities beyond this list in a project’s legal documents. For FI projects with a defined use of proceeds it excludes coal-related sub-projects (coal mining, coal transport, coal-fired power plants and infrastructure dedicated to them) and trade finance for thermal coal (FI Guidance Note para 7 and fn 11)."},"national_law":{"IN":{"last_reviewed":"2026-10","verify":true,"by_ps":{"1":"The EIA Notification 2006 requires prior Environmental Clearance only for listed project categories. Projects outside the list still need an IFC PS-aligned assessment if the financing applies the Performance Standards.","2":"The four Labour Codes (in force from 21 November 2025) and state rules cover wages, social security and safety. PS2 adds oversight of contractor and supply chain labour, a worker grievance mechanism for all workers, and a fair retrenchment process.","3":"Consent to Establish and Consent to Operate from the State Pollution Control Board and the Hazardous and Other Wastes Rules 2016 cover pollution control. PS3 adds the EHS Guidelines (the more stringent applies), resource efficiency and annual GHG quantification above 25,000 tCO₂e.","4":"Indian law has no general requirement to assess community health and safety outside hazardous-industry rules; the Dam Safety Act 2021 covers specified dams. Expectations on security personnel conduct and on external review of high-risk dams and tailings dams come mainly from PS4.","5":"RFCTLARR 2013 governs government acquisition but not private negotiated purchase, and gives limited cover to informal users. PS5 applies to negotiated purchases only where expropriation was the fallback, and covers informal users and economic displacement.","6":"The Wildlife (Protection) Act 1972, the Biological Diversity Act 2002, the forest conservation law (now the Van (Sanrakshan Evam Samvardhan) Adhiniyam 1980) and eco-sensitive zone notifications protect designated areas. The PS6 critical habitat test has no direct Indian equivalent.","7":"Fifth and Sixth Schedule provisions, PESA 1996 and the Forest Rights Act 2006 give gram sabhas consultation and consent roles. PS7 applies in wider circumstances, and FPIC must be documented.","8":"The AMASR Act 1958 sets prohibited (100 m) and regulated (200 m) zones around centrally protected monuments. Community and intangible heritage is covered mainly by PS8."},"ec_gate_note":"This sector is not listed in the schedule of India’s EIA Notification 2006, so IFC PS, through the financier, may be the only framework requiring an E&S assessment."}},"disclaimer":"First-pass screening only. It does not replace an ESDD, ESIA or ESMS, and the category is provisional."};
+var ENGINE_VERSION = "1.2.0";
+
+/* The engine below is a line-for-line port of screen.py. parity.js checks that
+   both produce identical output; do not change one without the other. */
+var ANSWERS = ["yes", "no", "unsure"];
+var COUNTRIES = ["IN", "OTHER"];
+
+function CaseError(errors){ this.errors = errors; this.message = errors.join("; "); }
+function jq(v){ return JSON.stringify(v); }
+function isObj(v){ return v !== null && typeof v === "object" && !Array.isArray(v); }
+function ids(list){ return list.map(function(x){ return x.id; }); }
+
+function normaliseCase(rules, c){
+  var errs = [];
+  if (!isObj(c)) throw new CaseError(["case must be a JSON object"]);
+  var sectorIds = ids(rules.sectors), stageIds = ids(rules.stages), qids = ids(rules.questions);
+  var sector = c.sector == null ? "" : c.sector;
+  if (typeof sector !== "string" || (sector && sectorIds.indexOf(sector) < 0))
+    errs.push("unknown sector " + jq(sector) + "; use one of: " + sectorIds.slice().sort().join(", "));
+  var stage = c.stage == null ? "" : c.stage;
+  if (typeof stage !== "string" || (stage && stageIds.indexOf(stage) < 0))
+    errs.push("unknown stage " + jq(stage) + "; use one of: " + stageIds.slice().sort().join(", "));
+  var country = c.country;
+  if (country == null || country === "") country = "IN";
+  if (COUNTRIES.indexOf(country) < 0) errs.push("unknown country " + jq(country) + "; use IN or OTHER");
+  var raw = c.answers == null ? {} : c.answers;
+  var answers = {};
+  if (!isObj(raw)) { errs.push("answers must be an object of question id to yes, no or unsure"); raw = {}; }
+  Object.keys(raw).forEach(function(qid){
+    var v = raw[qid];
+    if (qids.indexOf(qid) < 0) { errs.push("unknown question id " + jq(qid)); return; }
+    if (v === null || v === "") return;
+    if (typeof v !== "string" || ANSWERS.indexOf(v.trim().toLowerCase()) < 0) { errs.push(qid + ": " + jq(v) + " is not yes, no or unsure"); return; }
+    answers[qid] = v.trim().toLowerCase();
+  });
+  if (errs.length) throw new CaseError(errs);
+  return {sector: sector, stage: stage, country: country, answers: answers};
+}
+
+function screen(rules, input){
+  var c = normaliseCase(rules, input), answers = c.answers, stage = c.stage, country = c.country;
+  var qs = rules.questions;
+  var sector = null;
+  rules.sectors.forEach(function(s){ if (s.id === c.sector) sector = s; });
+  function ans(id){ return answers[id] || ""; }
+
+  var std = {};
+  rules.standards.forEach(function(s){
+    var ps = s.ps;
+    if (rules.status_rule.always_triggered.indexOf(ps) >= 0) { std[ps] = {status: "trig", yes: [], pending: []}; return; }
+    var mine = qs.filter(function(q){ return q.ps === ps; });
+    var a = mine.map(function(q){ return ans(q.id); });
+    var st;
+    if (a.indexOf("yes") >= 0) st = "trig";
+    else if (a.length && a.every(function(x){ return x === "no"; })) st = "clear";
+    else if (a.every(function(x){ return x === ""; })) st = "open";
+    else st = "review";
+    std[ps] = {status: st,
+      yes: mine.filter(function(q){ return ans(q.id) === "yes"; }),
+      pending: mine.filter(function(q){ var x = ans(q.id); return x === "" || x === "unsure"; })};
+  });
+
+  var cr = rules.category_rules, signals = [];
+  cr.a_signals.forEach(function(sig){
+    if (sig.type === "question_flag") {
+      qs.forEach(function(q){ if (q.a_signal && ans(q.id) === "yes") signals.push(q.if_yes_reason); });
+    } else if (sig.type === "sector_stage") {
+      if (sector && sector.risk === sig.sector_risk && stage === sig.stage) signals.push(sig.reason);
+    } else if (sig.type === "all_answers") {
+      if (Object.keys(sig.answers).every(function(k){ return ans(k) === sig.answers[k]; })) signals.push(sig.reason);
+    }
+  });
+  var watch = qs.filter(function(q){ return q.a_signal && ans(q.id) !== "no"; }).map(function(q){ return q.if_open_confirm; });
+  var informative = Object.keys(answers).filter(function(k){ return answers[k] === "yes" || answers[k] === "no"; }).length;
+  var minInfo = cr.min_informative_answers;
+  var blockers = qs.filter(function(q){ return q.blocks_c; }).map(function(q){ return q.id; });
+  if (sector) (sector.blocks_c_extra || []).forEach(function(id){ if (blockers.indexOf(id) < 0) blockers.push(id); });
+
+  var cat = null;
+  for (var i = 0; i < cr.order.length && !cat; i++) {
+    var rule = cr.order[i], w = rule.when;
+    if (w === "default") cat = rule;
+    else if ("sector_risk" in w && !("no_blocks_c_answered_yes" in w)) { if (sector && sector.risk === w.sector_risk) cat = rule; }
+    else if (w.any_a_signal) { if (signals.length) cat = rule; }
+    else if (w.no_sector) { if (!sector || informative < minInfo) cat = rule; }
+    else if (w.no_blocks_c_answered_yes) {
+      if (sector && sector.risk === w.sector_risk && !blockers.some(function(id){ return ans(id) === "yes"; })) cat = rule;
+    }
+  }
+  var value = cat.category;
+  var category = {value: value, label: cat.label, why: cat.why,
+    signals: value === "A" ? signals : [], watch: (value === "B" || value === "C") ? watch : []};
+  if (value === "C" && blockers.some(function(id){ return ans(id) !== "no"; })) category.why += " " + cat.note_if_any_open;
+
+  var ps1 = rules.standards[0];
+  var out = {rule_set_version: rules.version, engine_version: ENGINE_VERSION,
+    input: c, informative_answers: informative, category: category, standards: []};
+  var law = ((rules.national_law[country] || {}).by_ps) || {};
+  rules.standards.forEach(function(s){
+    var ps = s.ps, r = std[ps], actions = [];
+    if (r.status === "trig") {
+      if (ps === 1) actions = actions.concat((ps1.category_actions || {})[value] || []);
+      actions = actions.concat(s.base_actions);
+      r.yes.forEach(function(q){ actions = actions.concat(q.actions_if_yes); });
+    }
+    var nl = r.status !== "open" && law[String(ps)] != null ? law[String(ps)] : null;
+    out.standards.push({
+      ps: ps, name: s.name, status: r.status,
+      because: r.yes.map(function(q){ return {reason: q.if_yes_reason, section: q.section, cite: q.cite}; }),
+      actions: actions,
+      documents: r.status === "trig" ? s.documents : [],
+      confirm: r.status !== "open" ? r.pending.map(function(q){ return {fact: q.if_open_confirm, owner: q.owner, cite: q.cite}; }) : [],
+      note_if_clear: r.status === "clear" && s.note_if_clear != null ? s.note_if_clear : null,
+      national_law: nl});
+  });
+  out.warnings = (rules.sanity_checks || []).filter(function(k){
+    return sector && k.sector_in.indexOf(sector.id) >= 0 &&
+      Object.keys(k.answers).every(function(qid){ return ans(qid) === k.answers[qid]; });
+  }).map(function(k){ return {id: k.id, message: k.message}; });
+  if (country === "IN" && sector && sector.india_ec_exempt) out.india_ec_gate = rules.national_law.IN.ec_gate_note;
+  var el = rules.exclusion_list;
+  out.exclusion_check = {prompt: el.prompt, fi_prompt: sector && sector.risk === "fi" ? el.fi_prompt : null};
+  if (sector && sector.policy_note) out.sector_policy_note = sector.policy_note;
+  out.disclaimer = rules.disclaimer;
+  return out;
+}
+/* @@ENGINE_END */
+
+(function(){
+"use strict";
+var KEY = "ifcps-screen-v2";
+var LABEL = RULES.status_values;
+var SHORT = {};
+RULES.standards.forEach(function(s){ SHORT[s.ps] = s.short; });
+
+/* ---------- state ---------- */
+function blank(){ return {name: "", sector: "", stage: "", country: "IN", a: {}}; }
+var state = loadState();
+
+/* Anything read from storage or pasted by the user is checked here; unknown or
+   malformed values are dropped, so a damaged save can never break the page. */
+function sanitise(o){
+  var s = blank();
+  if (!o || typeof o !== "object") return s;
+  if (typeof o.name === "string") s.name = o.name.slice(0, 200);
+  if (typeof o.sector === "string" && ids(RULES.sectors).indexOf(o.sector) >= 0) s.sector = o.sector;
+  if (typeof o.stage === "string" && ids(RULES.stages).indexOf(o.stage) >= 0) s.stage = o.stage;
+  if (COUNTRIES.indexOf(o.country) >= 0) s.country = o.country;
+  var a = o.a && typeof o.a === "object" ? o.a : (o.answers && typeof o.answers === "object" ? o.answers : {});
+  var qids = ids(RULES.questions);
+  Object.keys(a).forEach(function(k){
+    var v = typeof a[k] === "string" ? a[k].trim().toLowerCase() : "";
+    if (qids.indexOf(k) >= 0 && ANSWERS.indexOf(v) >= 0) s.a[k] = v;
+  });
+  return s;
+}
+function loadState(){
+  try { var raw = localStorage.getItem(KEY); if (raw) return sanitise(JSON.parse(raw)); } catch (e) {}
+  return blank();
+}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+function caseOf(s){ return {sector: s.sector, stage: s.stage, country: s.country, answers: s.a}; }
+
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;"}[c]; }); }
+function li(t){ return '<li>' + esc(t) + '</li>'; }
+function liCite(a){ return '<li>' + esc(a.text) + ' <span class="cite">(' + esc(a.cite) + ')</span></li>'; }
+function citeText(c){ return Array.isArray(c) ? c.join("; ") : c; }
+
+/* ---------- form ---------- */
+function opt(id, v, label){ return '<label><input type="radio" name="' + id + '" value="' + v + '"><span>' + label + '</span></label>'; }
+function buildForm(){
+  var h = '<fieldset><legend>About the project</legend><div class="basics">' +
+    '<div class="field full"><label for="f-name">Project name</label><input id="f-name" name="name" type="text" maxlength="200" placeholder="For example, 150 MW solar park, Jaisalmer"></div>' +
+    '<div class="field"><label for="f-sector">Sector</label><select id="f-sector" name="sector"><option value="">Choose a sector</option>' +
+      RULES.sectors.map(function(s){ return '<option value="' + s.id + '">' + esc(s.label) + '</option>'; }).join("") + '</select></div>' +
+    '<div class="field"><label for="f-stage">Stage</label><select id="f-stage" name="stage"><option value="">Choose a stage</option>' +
+      RULES.stages.map(function(s){ return '<option value="' + s.id + '">' + esc(s.label) + '</option>'; }).join("") + '</select></div>' +
+    '<div class="field"><label for="f-country">Location</label><select id="f-country" name="country"><option value="IN">India</option><option value="OTHER">Another country</option></select></div>' +
+    '</div></fieldset>';
+  RULES.standards.slice(1).forEach(function(s){
+    h += '<fieldset><legend><span class="psn">PS' + s.ps + '</span>' + esc(s.name) + '</legend>';
+    RULES.questions.filter(function(q){ return q.ps === s.ps; }).forEach(function(q){
+      h += '<div class="q"><p class="qt" id="t-' + q.id + '">' + esc(q.text) + '</p>' +
+        '<p class="qc">' + esc(citeText(q.cite)) + (q.basis === "EMC" ? '<span class="tag">EMC judgement</span>' : '') + '</p>' +
+        '<div class="opts" role="radiogroup" aria-labelledby="t-' + q.id + '">' +
+        opt(q.id, "yes", "Yes") + opt(q.id, "no", "No") + opt(q.id, "unsure", "Not sure") + '</div></div>';
+    });
+    h += '</fieldset>';
+  });
+  document.getElementById("form").innerHTML = h;
+  syncForm();
+}
+function syncForm(){
+  document.getElementById("f-name").value = state.name;
+  document.getElementById("f-sector").value = state.sector;
+  document.getElementById("f-stage").value = state.stage;
+  document.getElementById("f-country").value = state.country;
+  RULES.questions.forEach(function(q){
+    var v = state.a[q.id] || "";
+    ANSWERS.forEach(function(a){
+      var el = document.querySelector('input[name="' + q.id + '"][value="' + a + '"]');
+      if (el) el.checked = (a === v);
+    });
+  });
+}
+
+/* ---------- exclusion list ---------- */
+function exItems(items, EL){
+  return '<ul>' + items.map(function(it){
+    var fn = it.footnote ? ' <span class="cite">(note ' + esc(String(it.footnote)) + ')</span>' : '';
+    return '<li>' + esc(it.text) + fn + '</li>';
+  }).join("") + '</ul>';
+}
+function exclusionHtml(isFi){
+  var EL = RULES.exclusion_list, h = '<details class="exl"><summary>Show the Exclusion List</summary>';
+  h += '<p>' + esc(EL.intro) + '</p>' + exItems(EL.items, EL);
+  Object.keys(EL.footnotes).forEach(function(k){ h += '<p class="fnote"><b>Note ' + esc(k) + '.</b> ' + esc(EL.footnotes[k]) + '</p>'; });
+  h += '<p>' + esc(EL.reasonableness_test) + '</p>';
+  if (isFi) {
+    Object.keys(EL.fi_additional).forEach(function(k){ var g = EL.fi_additional[k]; h += '<p><b>' + esc(g.label) + ':</b></p>' + exItems(g.items, EL); });
+    h += '<p>' + esc(EL.fi_substantially_involved) + ' <span class="cite">(' + esc(EL.fi_cite) + ')</span></p>';
+  }
+  h += '<p>' + esc(EL.other_restrictions_note) + '</p><p>' + esc(EL.amendment_note) + '</p>';
+  h += '<p class="cite">Source: ' + esc(EL.source) + '</p></details>';
+  return h;
+}
+
+/* ---------- render ---------- */
+function render(){
+  var res = screen(RULES, caseOf(state)), cat = res.category;
+  var strip = "";
+  res.standards.forEach(function(s){
+    strip += '<button type="button" class="cell ' + s.status + '" data-go="ps' + s.ps + '" aria-label="PS' + s.ps + ' ' + esc(SHORT[s.ps]) + ': ' + esc(LABEL[s.status]) + '"><b>PS' + s.ps + '</b><small>' + esc(SHORT[s.ps]) + '</small></button>';
+  });
+  document.getElementById("strip").innerHTML = strip;
+
+  var c = '<div class="catrow"><div class="catletter ' + esc(cat.value === "-" ? "none" : cat.value) + '">' + esc(cat.value === "-" ? "–" : cat.value) + '</div><div><p class="catlabel">' + esc(cat.label) + '</p><p class="catwhy">' + esc(cat.why) + '</p></div></div>';
+  if (cat.signals.length) c += '<div class="watch"><p>What drives this</p><ul>' + cat.signals.map(li).join("") + '</ul></div>';
+  if (cat.watch.length) c += '<div class="watch"><p>Could move to Category A. Confirm:</p><ul>' + cat.watch.map(li).join("") + '</ul></div>';
+  if (res.india_ec_gate) c += '<div class="watch"><p>No Environmental Clearance gate</p><span class="small">' + esc(res.india_ec_gate) + '</span></div>';
+  if (res.sector_policy_note) c += '<div class="watch"><p>Sector note from the IFC Sustainability Policy</p><span class="small">' + esc(res.sector_policy_note.text) + ' <span class="cite">(' + esc(res.sector_policy_note.cite) + ')</span></span></div>';
+  c += '<div class="watch"><p>IFC Exclusion List check</p><span class="small">' + esc(res.exclusion_check.prompt) + (res.exclusion_check.fi_prompt ? ' ' + esc(res.exclusion_check.fi_prompt) : '') + '</span>' + exclusionHtml(res.exclusion_check.fi_prompt !== null) + '</div>';
+  document.getElementById("cat").innerHTML = c;
+
+  document.getElementById("warn").innerHTML = res.warnings.length
+    ? '<div class="watch"><p>Check these answers</p><ul>' + res.warnings.map(function(w){ return li(w.message); }).join("") + '</ul></div>' : "";
+
+  var total = RULES.questions.length, done = Object.keys(state.a).length;
+  var unsure = Object.keys(state.a).filter(function(k){ return state.a[k] === "unsure"; }).length;
+  document.getElementById("progress").textContent = done + " of " + total + " questions answered" + (unsure ? ", " + unsure + " marked Not sure" : "") +
+    ". A category needs a sector and at least " + RULES.category_rules.min_informative_answers + " Yes or No answers (" + res.informative_answers + " so far).";
+
+  var cards = "";
+  res.standards.forEach(function(s){
+    var ps = s.ps, st = s.status, body = "", rs = RULES.standards[ps - 1];
+    if (ps === 1) {
+      body += '<h4>Why</h4><ul><li>PS1 applies to every project financed under the Performance Standards; the ESMS is scaled to the project’s risk.</li></ul>';
+      body += '<h4>To conform</h4><ul>' + s.actions.map(liCite).join("") + '</ul>';
+    } else if (st === "trig") {
+      body += '<h4>Why</h4><ul>' + s.because.map(function(b){ return '<li>' + esc(b.reason) + ' <span class="cite">(' + esc(citeText(b.cite)) + ')</span></li>'; }).join("") + '</ul>';
+      body += '<h4>To conform</h4><ul>' + s.actions.map(liCite).join("") + '</ul>';
+      if (s.documents.length) body += '<h4>Documents normally expected</h4><ul>' + s.documents.map(li).join("") + '</ul>';
+      if (s.confirm.length) body += '<h4>Also confirm</h4><ul>' + s.confirm.map(function(x){ return li(x.fact); }).join("") + '</ul>';
+    } else if (st === "review") {
+      body += '<h4>Why</h4><ul><li>No trigger confirmed yet, but some answers are open or uncertain.</li></ul>';
+      body += '<h4>Confirm first</h4><ul>' + s.confirm.map(function(x){ return '<li>' + esc(x.fact) + ' <span class="cite">(' + esc(x.owner) + ')</span></li>'; }).join("") + '</ul>';
+      body += '<h4>If it is triggered</h4><ul>' + rs.base_actions.map(liCite).join("") + '</ul>';
+    } else if (st === "clear") {
+      body += '<h4>Why</h4><ul><li>No trigger found on your answers. Revisit if the design, footprint or supply chain changes.</li></ul>';
+      if (s.note_if_clear) body += '<h4>Still worth doing</h4><ul>' + li(s.note_if_clear) + '</ul>';
+    } else {
+      body += '<p class="small" style="margin:6px 0 0;color:var(--muted)">Answer the PS' + ps + ' questions to screen this standard.</p>';
+    }
+    if (s.national_law) body += '<div class="india"><b>Indian law: </b>' + esc(s.national_law) + '</div>';
+    cards += '<article class="card ' + st + '" id="ps' + ps + '"><h3><span class="psn">PS' + ps + '</span>' + esc(s.name) + '</h3><span class="chip ' + st + '">' + esc(LABEL[st]) + '</span>' + body + '</article>';
+  });
+  document.getElementById("cards").innerHTML = cards;
+
+  var n = function(k){ return res.standards.filter(function(s){ return s.status === k; }).length; };
+  document.getElementById("live").textContent = (cat.value === "-" ? "Not yet categorised" : "Provisional category " + cat.value) +
+    ". " + n("trig") + " standards triggered, " + n("review") + " need review.";
+  document.getElementById("ver").textContent = "Rule set " + RULES.version + " · engine " + ENGINE_VERSION + " · released " + RULES.released + ".";
+}
+
+/* ---------- summary and hand-off ---------- */
+var ANS_LABEL = {yes: "Yes", no: "No", unsure: "Not sure"};
+function sectorLabel(){ var s = RULES.sectors.filter(function(x){ return x.id === state.sector; })[0]; return s ? s.label : "(not set)"; }
+function stageLabel(){ var s = RULES.stages.filter(function(x){ return x.id === state.stage; })[0]; return s ? s.label : "(not set)"; }
+function summary(){
+  var res = screen(RULES, caseOf(state)), cat = res.category, L = [];
+  L.push("IFC PERFORMANCE STANDARDS SCREENING (rule set " + RULES.version + ")");
+  L.push("Project: " + (state.name || "(unnamed)"));
+  L.push("Sector: " + sectorLabel() + " | Stage: " + stageLabel() + " | Location: " + (state.country === "IN" ? "India" : "Other"));
+  L.push("Category: " + cat.label + ". " + cat.why);
+  cat.signals.forEach(function(x){ L.push("  Driver: " + x); });
+  cat.watch.forEach(function(x){ L.push("  Could move to A, confirm: " + x); });
+  res.warnings.forEach(function(w){ L.push("  Check this answer: " + w.message); });
+  if (res.india_ec_gate) L.push("  " + res.india_ec_gate);
+  if (res.sector_policy_note) L.push("  Sector note: " + res.sector_policy_note.text + " (" + res.sector_policy_note.cite + ")");
+  L.push("  Exclusion List: " + res.exclusion_check.prompt + (res.exclusion_check.fi_prompt ? " " + res.exclusion_check.fi_prompt : ""));
+  L.push("");
+  res.standards.forEach(function(s){
+    L.push("PS" + s.ps + " " + s.name + ": " + LABEL[s.status].toUpperCase());
+    s.because.forEach(function(b){ L.push("  Why: " + b.reason + " (" + citeText(b.cite) + ")"); });
+    s.confirm.forEach(function(x){ L.push("  Confirm: " + x.fact); });
+  });
+  L.push("");
+  L.push("ANSWERS GIVEN");
+  RULES.questions.forEach(function(q){ L.push("  [" + q.id + "] " + (ANS_LABEL[state.a[q.id]] || "not answered") + " | " + q.text); });
+  L.push("");
+  L.push(res.disclaimer);
+  return L.join("\n");
+}
+function caseJson(){
+  var res = screen(RULES, caseOf(state)), st = {};
+  res.standards.forEach(function(s){ st[s.ps] = s.status; });
+  return JSON.stringify({
+    tool: "EMC IFC PS screening tool", rule_set_version: RULES.version, project: state.name,
+    sector: state.sector, stage: state.stage, country: state.country, answers: state.a,
+    html_result: {category: res.category.value, statuses: st}
+  }, null, 1);
+}
+
+/* ---------- events ---------- */
+var form = document.getElementById("form"), toast = document.getElementById("toast");
+buildForm(); render();
+form.addEventListener("input", function(e){
+  if (e.target.name === "name") { state.name = e.target.value.slice(0, 200); save(); return; }
+  handle(e.target);
+});
+form.addEventListener("change", function(e){ handle(e.target); });
+function handle(t){
+  if (t.name === "sector" || t.name === "stage" || t.name === "country") { state[t.name] = t.value; state = sanitise(state); }
+  else if (t.type === "radio" && ids(RULES.questions).indexOf(t.name) >= 0 && ANSWERS.indexOf(t.value) >= 0) state.a[t.name] = t.value;
+  else return;
+  save(); render();
+}
+document.getElementById("strip").addEventListener("click", function(e){
+  var b = e.target.closest("[data-go]"); if (!b) return;
+  var el = document.getElementById(b.getAttribute("data-go")); if (el) el.scrollIntoView({behavior: "smooth", block: "start"});
+});
+document.getElementById("jump").addEventListener("click", function(){ document.getElementById("actions").scrollIntoView({behavior: "smooth"}); });
+
+function copyText(text, okMsg, label){
+  var fb = document.getElementById("copyfallback");
+  function fallback(){
+    fb.innerHTML = '<textarea class="copybox" readonly aria-label="' + esc(label) + '"></textarea>';
+    var ta = fb.querySelector("textarea"); ta.value = text; ta.focus(); ta.select();
+    toast.textContent = "Select all and copy the text below.";
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function(){ fb.innerHTML = ""; toast.textContent = okMsg; }, fallback);
+    else fallback();
+  } catch (e) { fallback(); }
+}
+document.getElementById("copy").addEventListener("click", function(){ copyText(summary(), "Summary copied.", "Screening summary"); });
+document.getElementById("copyjson").addEventListener("click", function(){ copyText(caseJson(), "Case copied. Paste it into Claude with the IFC PS screening skill.", "Case for Claude"); });
+
+document.getElementById("loadbtn").addEventListener("click", function(){
+  var box = document.getElementById("loadtext");
+  try {
+    var o = JSON.parse(box.value), pasted = o && o.case ? o.case : o;
+    var probe = {sector: pasted.sector, stage: pasted.stage, country: pasted.country, answers: pasted.answers || pasted.a};
+    screen(RULES, probe);
+    state = sanitise(Object.assign({name: o.project || pasted.project || ""}, pasted, {a: probe.answers}));
+    save(); syncForm(); render(); box.value = ""; toast.textContent = "Case loaded.";
+  } catch (e) {
+    toast.textContent = e && e.errors ? "Not loaded: " + e.errors.join("; ") : "Not loaded: the text is not a case copied from this tool.";
+  }
+});
+
+var resetBtn = document.getElementById("reset"), armed = null;
+resetBtn.addEventListener("click", function(){
+  if (!armed) {
+    resetBtn.textContent = "Click again to clear";
+    armed = setTimeout(function(){ resetBtn.textContent = "Clear answers"; armed = null; }, 3000);
+    return;
+  }
+  clearTimeout(armed); armed = null; resetBtn.textContent = "Clear answers";
+  state = blank(); save(); syncForm(); render();
+  document.getElementById("copyfallback").innerHTML = ""; toast.textContent = "Answers cleared.";
+});
+})();
+</script>
+</body>
+</html>

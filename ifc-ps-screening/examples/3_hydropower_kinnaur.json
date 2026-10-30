@@ -1,0 +1,39 @@
+{
+ "tool": "EMC IFC PS screening tool",
+ "rule_set_version": "1.2.0",
+ "project": "120 MW run-of-river hydropower, Kinnaur, Himachal Pradesh",
+ "sector": "hydro",
+ "stage": "greenfield",
+ "country": "IN",
+ "answers": {
+  "p2_workers": "yes",
+  "p2_contract": "yes",
+  "p2_camps": "yes",
+  "p3_pollution": "yes",
+  "p4_near": "yes",
+  "p4_infra": "yes",
+  "p4_dam": "yes",
+  "p5_land": "yes",
+  "p5_users": "yes",
+  "p5_relocate": "unsure",
+  "p6_natural": "yes",
+  "p6_species": "unsure",
+  "p7_present": "yes",
+  "p7_fpic": "yes",
+  "p8_known": "yes",
+  "p8_dig": "yes"
+ },
+ "html_result": {
+  "category": "A",
+  "statuses": {
+   "1": "trig",
+   "2": "trig",
+   "3": "trig",
+   "4": "trig",
+   "5": "trig",
+   "6": "trig",
+   "7": "trig",
+   "8": "trig"
+  }
+ }
+}

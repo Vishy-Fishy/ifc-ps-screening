@@ -1,0 +1,9 @@
+dist/
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+Thumbs.db
+# Never commit client or deal material, or the IFC PDFs (download them from ifc.org)
+private/
+*.pdf

@@ -1,0 +1,14 @@
+IFC PS Screening skill, version 1.2 (October 2026)
+Developed by Environmental Management Centre (EMC), Mumbai, for participants of
+"Both Sides of the Table: Masterclass on IFC Performance Standards" (Ekonnect Knowledge Foundation).
+
+Provided for the professional use of masterclass participants. Not for resale or
+redistribution without EMC's written permission.
+
+This skill supports first-pass screening only. It does not replace an ESDD, ESIA or ESMS.
+The IFC Performance Standards and Guidance Notes are IFC publications; download them from ifc.org.
+Bundled rule set: EMC IFC PS screening rules v1.2.0 (references/ifc_ps_rules.json), the same rule set as the EMC checklist.
+Performance Standard paragraph numbers were checked against the 2012 text (Guidance Notes updated June 2021).
+Category meanings follow the IFC Sustainability Policy (2012) and the FI rules follow the IFC Guidance Note on Financial Intermediaries (September 2023). Sector risk classes, the answers-to-category rules and the sanity checks are EMC judgement.
+The IFC Exclusion List text was supplied by EMC from ifc.org (amended 8 December 2025).
+India-law content reflects general knowledge as of October 2026 and must be verified.
